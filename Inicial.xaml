@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Proyecto_Integrador.Inicial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Integrador"
+             mc:Ignorable="d" 
+             d:DesignHeight="875" d:DesignWidth="1370"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:fa="http://schemas.fontawesome.io/icons/">
+    <Grid>
+        <Border CornerRadius="10" Height="670" MaxHeight="670" Margin="30" x:Name="BordeImagenLugar">
+            <Border.Background>
+                <ImageBrush Stretch="UniformToFill" x:Name="imagenLugar" ImageSource="/Vistas/PlaceholderMapa.png"/>
+            </Border.Background>
+        </Border>
+        
+    </Grid>
+</UserControl>

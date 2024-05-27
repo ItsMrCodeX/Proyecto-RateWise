@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="Proyecto_Integrador.Vistas.VerInfoLugar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Integrador.Vistas"
+             mc:Ignorable="d" 
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             d:DesignHeight="875" d:DesignWidth="1370">
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    Background="{TemplateBinding Background}" 
+                    CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylePrimary" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#5E239D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+            BorderBrush="{TemplateBinding BorderBrush}" 
+            Background="{TemplateBinding Background}" 
+            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyleSecondary" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1FDBAE"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+    BorderBrush="{TemplateBinding BorderBrush}" 
+    Background="{TemplateBinding Background}" 
+    CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- Definición de las columnas del grid -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="0" Background="#F7F2FF">
+            <ui:SimpleStackPanel Orientation="Vertical" >
+                <Label Content="" Name="idLugar" Foreground="Transparent" Visibility="Collapsed"/>
+                <TextBlock TextWrapping="WrapWithOverflow" Text="Example" FontWeight="Bold" FontSize="45" x:Name="txtNombre" Margin="10"/>
+                <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="1"/>
+                <ui:SimpleStackPanel Margin="10">
+                    <Label Foreground="Gray" Content="Descripción" FontSize="30"/>
+                    <TextBlock TextWrapping="WrapWithOverflow" x:Name="txbDescripcion" FontSize="24" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida."/>
+                </ui:SimpleStackPanel>
+                <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="1"/>
+                <ui:SimpleStackPanel Margin="10" x:Name="stckResenas">
+                    <Label Foreground="Gray" Content="Ultima Reseña" FontSize="30"/>
+                    <ui:SimpleStackPanel>
+                        <StackPanel Orientation="Horizontal" Height="70" Width="auto">
+                            <Image Height="60" Width="60" x:Name="fotoperfil" Margin="0,0,20,0"/>
+                            <TextBlock VerticalAlignment="Center" x:Name="AliasUltima" Text="AAA" FontSize="30"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Width="10" Height="30"></TextBlock>
+                            <TextBlock VerticalAlignment="Center" x:Name="CalificacionUltima" Text="AAA" FontSize="30"></TextBlock>
+                        </StackPanel>
+                    </ui:SimpleStackPanel>
+                    
+                </ui:SimpleStackPanel>
+                <ui:SimpleStackPanel Margin="10" Visibility="Collapsed" x:Name="stckNoResenas">
+                    <Label Foreground="Gray" Content="No hay Reseñas" FontSize="30"/>
+                </ui:SimpleStackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Reseñar" Width="180" Height="70" Margin="50,0,110,0" Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" x:Name="btnresenar" Click="btnresenar_Click"/>
+                    <Button Content="Ver Reseñas" Width="180" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" Click="Button_Click" />
+                </StackPanel>
+            </ui:SimpleStackPanel>
+        </ScrollViewer>
+        <ui:ScrollViewerEx Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <Border CornerRadius="10" Height="240" MaxHeight="240" Margin="30" x:Name="BordeImagenLugar">
+                    <Border.Background>
+                        <ImageBrush Stretch="UniformToFill" x:Name="imagenLugar" ImageSource="/Vistas/PlaceholderMapa.png"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Horizontal">
+                </StackPanel>
+                <Label Foreground="Gray" Content="Ubicación" FontSize="30" Margin="10"/>
+                <Border CornerRadius="10" Height="160" Margin="20">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="/Vistas/PlaceholderMapa.png"/>
+                    </Border.Background>
+                </Border>
+                <Button  Content="Ver en Mapa" Width="180" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" x:Name="verenmapa" Click="verenmapa_Click"/>
+                <TextBlock TextWrapping="WrapWithOverflow" FontSize="24" Text="" x:Name="txbUbicacion"/>
+                <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="1"/>
+                <Label Foreground="Gray" Content="Detalles Clave" FontSize="30" Margin="10"/>
+                <ui:SimpleStackPanel Margin="10">
+                    <Label Foreground="Gray" Content="Tipo" FontSize="30"/>
+                    <TextBlock TextWrapping="WrapWithOverflow" FontSize="24" Text="" x:Name="txbTipo"/>
+                </ui:SimpleStackPanel>
+                <ui:SimpleStackPanel Orientation="Horizontal">
+                    <ui:SimpleStackPanel Margin="10,0,50,10">
+                        <Label Foreground="Gray" Content="Calificación Promedio"  FontSize="30"/>
+                        <TextBlock TextWrapping="WrapWithOverflow" FontSize="24" Text="" x:Name="txbCalPromedio"/>
+                    </ui:SimpleStackPanel>
+                    <Border CornerRadius="10" Background="#F7F2FF" Margin="10,0,50,10" Height="90" Width="300">
+                        <ui:SimpleStackPanel>
+                            <Label  Foreground="Gray" Content="Contacto" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="30"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10,0,0,0" Text="12" TextWrapping="WrapWithOverflow" FontSize="30" x:Name="txbContacto" Width="250"/>
+                                <fa:FontAwesome Icon="Phone" Foreground="ForestGreen" HorizontalAlignment="Right" FontSize="30" Margin="0,0,5,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ui:SimpleStackPanel>
+                    </Border>
+
+                </ui:SimpleStackPanel>
+
+            </StackPanel>
+        </ui:ScrollViewerEx>
+    </Grid>
+</UserControl>

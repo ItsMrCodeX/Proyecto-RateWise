@@ -1,0 +1,190 @@
+﻿<UserControl x:Class="Proyecto_Integrador.VistasExtra.InfoUsuario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Proyecto_Integrador.VistasExtra"
+             mc:Ignorable="d" 
+             d:DesignHeight="875" d:DesignWidth="1370"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:fa="http://schemas.fontawesome.io/icons/">
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        Background="{TemplateBinding Background}" 
+                        CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStylePrimary" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#5E239D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                Background="{TemplateBinding Background}" 
+                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyleSecondary" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1FDBAE"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderThickness="{TemplateBinding BorderThickness}" 
+        BorderBrush="{TemplateBinding BorderBrush}" 
+        Background="{TemplateBinding Background}" 
+        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PasswordBoxStyle" TargetType="{x:Type PasswordBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" 
+                        CornerRadius="10">
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <!-- Definición de las columnas del grid -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Imagen redonda con icono de edición -->
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+           
+                <Image Width="380" Height="380" x:Name="ImagenUsuario"/>
+            <StackPanel Margin="5">
+                <Button Visibility="Collapsed" Content="Cambiar Imagen" Width="300" Height="50" Margin="40,20" FontSize="18" Style="{StaticResource ButtonStylePrimary}" x:Name="AgregarImagen" Click="AgregarImagen_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Sección de perfil -->
+        <StackPanel Grid.Column="1" Margin="20">
+            <TextBlock Text="Mi perfil!" FontSize="40" FontWeight="Bold" Foreground="Black" Margin="0,20,0,20" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Información" FontSize="14" Foreground="Gray" Margin="0,10,0,20" />
+                <Button  Height="40" Width="110" Margin="720,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonStyleSecondary}" x:Name="btnEditar" Click="btnEditar_Click"> 
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Pencil" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="Editar" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Campos de información -->
+                <StackPanel x:Name="stckLeft" Grid.Column="0" Margin="0,100,10,0">
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Alias" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBox IsEnabled="False" Background="Gray" Name="txtAlias" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Materno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBox Name="txtAMaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Correo" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBox Name="txtCorreo" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                    </StackPanel>
+                    <StackPanel x:Name="stckbtnGuardar" Orientation="Horizontal" HorizontalAlignment="Center" IsEnabled="False">
+                        <Button Content="Guardar" Width="200" Height="50" Style="{StaticResource ButtonStylePrimary}" FontSize="16" HorizontalAlignment="Left" Margin="0,20,-160,0" Click="Button_Click"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel x:Name="stckRight"  Grid.Column="1" Margin="10,100,0,0">
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Nombre" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBox Name="txtNombre" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Paterno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBox Name="txtAPaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,10">
+                        <TextBlock Text="Contraseña" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <PasswordBox HorizontalAlignment="Left" Margin="0,0,40,0" Name="txtContraseña" Width="400" Height="40" Padding="10" FontSize="18" Style="{StaticResource PasswordBoxStyle}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="stckbtnVerResenas" Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Button Content="Ver reseñas" Width="200" Height="50" Style="{StaticResource ButtonStylePrimary}" FontSize="16" HorizontalAlignment="Right" Margin="0,20,240,0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Botones de Guardar y Ver reseñas -->
+
+        </StackPanel>
+    </Grid>
+</UserControl>
