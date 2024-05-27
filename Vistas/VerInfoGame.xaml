@@ -97,9 +97,9 @@ CornerRadius="10">
             <ColumnDefinition Width="450"/>
         </Grid.ColumnDefinitions>
         
-        <ui:SimpleStackPanel Grid.Column="0">
-            <ui:ScrollViewerEx>
-                <ui:SimpleStackPanel>
+        
+            <ScrollViewer Grid.Column="0" Margin="20" Height="auto" Width="auto">
+                <ui:SimpleStackPanel Margin="10">
                     <TextBlock x:Name="txtTitulo" Text="Titulo Aqui" FontSize="90" Margin="30" TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,20,0">
@@ -134,14 +134,35 @@ CornerRadius="10">
                     <ui:SimpleStackPanel Margin="10" Visibility="Collapsed" x:Name="stckNoResenas">
                         <Label Foreground="Gray" Content="No hay Reseñas" FontSize="30"/>
                     </ui:SimpleStackPanel>
-                </ui:SimpleStackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Reseñar" Width="280" Height="70" Margin="50,0,110,0" Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" x:Name="btnresenar" Click="btnresenar_Click"/>
+                        <Button Content="Ver Reseñas" Width="280" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" Click="Button_Click" />
+                    </StackPanel>
+                <StackPanel x:Name="stckAdmins" Visibility="Collapsed">
+
+                    <StackPanel Orientation="Horizontal" >
+                        <Button Width="180" Height="70" Margin="50,0,110,0" HorizontalContentAlignment="Center"  Background="#5E239D" Foreground="White" x:Name="BorrarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarCnPermiso_Click_1" >
+                            <fa:FontAwesome Icon="Trash" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                        </Button>
+                        <Button Width="180" Height="70"  HorizontalContentAlignment="Center" Background="#5E239D" Foreground="White" x:Name="BorrarRsCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarRsCnPermiso_Click"  >
+                            <fa:FontAwesome Icon="Remove" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                        </Button>
+
+                    </StackPanel>
+                    <Button Width="480" Height="70"  HorizontalContentAlignment="Left" Margin="-100,0,0,0" Background="#5E239D" Foreground="White" x:Name="ActualizarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarRsCnPermiso_Click"  >
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="Pencil" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                            <TextBlock Text="Actualizar"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </ui:SimpleStackPanel>
                 
-            </ui:ScrollViewerEx>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Reseñar" Width="280" Height="70" Margin="50,0,110,0" Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" x:Name="btnresenar" Click="btnresenar_Click"/>
-                <Button Content="Ver Reseñas" Width="280" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" Click="Button_Click" />
-            </StackPanel>
-        </ui:SimpleStackPanel>
+            </ScrollViewer>
+            
+        
         <ui:SimpleStackPanel Grid.Column="1">
             <Border CornerRadius="20" Height="460" MaxHeight="520" Width="320" Margin="30,185,30,0" x:Name="BordeImagenLugar">
                 <Border.Background>

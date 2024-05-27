@@ -156,6 +156,17 @@ namespace Proyecto_Integrador.VistasExtra
 
             return base64String;
         }
+
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            Global.UsuarioActual = "";
+            Global.TipoResenar = -1;
+            Global.IdAResenar = -1;
+            MessageBox.Show("Sesion Cerrada");
+            MainWindow main = new MainWindow();
+            main.ActualizaUsuario();
+            main.VerInicio();
+        }
     }
 }
 

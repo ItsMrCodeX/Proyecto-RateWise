@@ -141,6 +141,30 @@ namespace Proyecto_Integrador.Servicios
                 return false;
             }
         }
+        public bool BorrarResenas(int id)
+        {
+            try
+            {
+                if (this.AbrirConexion())
+                {
+                    MySqlCommand cmd = new MySqlCommand("Delete from resenasvideogames where idgames=@id", conexion);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    this.CerrarConexion();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
 
         public List<Videojuegos> getVideojuegos()
         {
@@ -415,5 +439,32 @@ namespace Proyecto_Integrador.Servicios
                 return null;
             }
         }
+        public bool InsertarResenaVideogame(ResenaVideoGame resenas)
+        {
+            try
+            {
+                if (this.AbrirConexion())
+                {
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO resenasvideogames (calificacion,textoresena,alias,idgames) VALUES (@calificacion,@texto,@alias,@idgames)", conexion);
+                    cmd.Parameters.AddWithValue("@calificacion", resenas.Calificacion);
+                    cmd.Parameters.AddWithValue("@texto", resenas.Texto);
+                    cmd.Parameters.AddWithValue("@alias", resenas.Alias);
+                    cmd.Parameters.AddWithValue("@idgames", resenas.IdGame);
+                    cmd.ExecuteNonQuery();
+                    this.CerrarConexion();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
     }
 }

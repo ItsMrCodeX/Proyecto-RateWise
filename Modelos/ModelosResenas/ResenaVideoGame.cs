@@ -8,23 +8,23 @@ namespace Proyecto_Integrador.Modelos.ModelosResenas
         private double calificacion;
         private string alias;
         private string texto;
-        private int idLugar;
+        private int idGame;
         private BitmapImage imagen;
 
         public int IdResenaVideoGames { get => idResenaVideoGames; set => idResenaVideoGames = value; }
         public double Calificacion { get => calificacion; set => calificacion = value; }
         public string Alias { get => alias; set => alias = value; }
         public string Texto { get => texto; set => texto = value; }
-        public int IdLugar { get => idLugar; set => idLugar = value; }
+        public int IdGame { get => idGame; set => idGame = value; }
         public BitmapImage Imagen { get => imagen; set => imagen = value; }
 
-        public ResenaVideoGame(int idResenaVideoGames, double calificacion, string alias, string texto, int idLugar)
+        public ResenaVideoGame(int idResenaVideoGames, double calificacion, string alias, string texto, int idGame)
         {
             IdResenaVideoGames = idResenaVideoGames;
             Calificacion = calificacion;
             Alias = alias;
             Texto = texto;
-            IdLugar = idLugar;
+            IdGame = idGame;
 
         }
         public ResenaVideoGame()

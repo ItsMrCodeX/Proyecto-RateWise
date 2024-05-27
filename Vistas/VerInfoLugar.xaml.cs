@@ -152,11 +152,6 @@ namespace Proyecto_Integrador.Vistas
             main.VerResenasLugar(idDelLugar);
         }
 
-        private void BorrarCnPermiso_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BorrarCnPermiso_Click_1(object sender, RoutedEventArgs e)
         {
             if (VerificarPermisos())

@@ -49,7 +49,6 @@ namespace Proyecto_Integrador
 
             if (mainWindow != null)
             {
-                MessageBox.Show("Cargando: " + juego);
                 var verInfoGame = new VerInfoGame(juego);
                 mainWindow.Cnt_main.Content = verInfoGame;
             }
@@ -66,6 +65,7 @@ namespace Proyecto_Integrador
                 mainWindow.Cnt_main.Content = verResenasLugar;
             }
         }
+
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(Global.UsuarioActual))
@@ -157,6 +157,18 @@ namespace Proyecto_Integrador
             {
 
                 mainWindow.Cnt_main.Content = new ResenarLugar(id, nombre);
+
+            }
+        }
+
+        public void ResenarGame(int id, string nombre)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+
+            if (mainWindow != null)
+            {
+
+                mainWindow.Cnt_main.Content = new ResenarVideogames(id, nombre);
 
             }
         }

@@ -143,8 +143,7 @@
                     <Button Content="Ver Reseñas" Width="180" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" Click="Button_Click" />
                 </StackPanel>
                 <StackPanel x:Name="stckAdmins" Visibility="Collapsed">
-                    
-                
+
                 <StackPanel Orientation="Horizontal" >
                     <Button Width="180" Height="70" Margin="50,0,110,0" HorizontalContentAlignment="Center"  Background="#5E239D" Foreground="White" x:Name="BorrarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarCnPermiso_Click_1" >
                         <fa:FontAwesome Icon="Trash" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>

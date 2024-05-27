@@ -1,4 +1,5 @@
 ﻿using Proyecto_Integrador.Globales;
+using Proyecto_Integrador.Modelos;
 using Proyecto_Integrador.Modelos.ModelosResenas;
 using Proyecto_Integrador.Servicios;
 using System.Windows;
@@ -13,16 +14,17 @@ namespace Proyecto_Integrador.Resenas
     {
         public int RatingValue { get; private set; }
 
-        int idDelLugar = -1;
+        int idDelGame = -1;
         public ResenarVideogames(int idgame, string nomgame)
         {
             InitializeComponent();
+            VerificarUsuario(idgame, nomgame);
         }
 
         public void VerificarUsuario(int id, string nombre)
         {
             titulo.Content = nombre;
-            idDelLugar = id;
+            idDelGame = id;
             string user = Global.UsuarioActual;
 
             if (string.IsNullOrEmpty(user))
@@ -38,6 +40,7 @@ namespace Proyecto_Integrador.Resenas
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            RatingValue = 1;
             star1.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star2.Icon = FontAwesome.WPF.FontAwesomeIcon.StarOutline;
             star3.Icon = FontAwesome.WPF.FontAwesomeIcon.StarOutline;
@@ -48,6 +51,7 @@ namespace Proyecto_Integrador.Resenas
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            RatingValue = 2;
             star1.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star2.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star3.Icon = FontAwesome.WPF.FontAwesomeIcon.StarOutline;
@@ -57,6 +61,7 @@ namespace Proyecto_Integrador.Resenas
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            RatingValue = 3;
             star1.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star2.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star3.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
@@ -66,6 +71,7 @@ namespace Proyecto_Integrador.Resenas
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            RatingValue = 4;
             star1.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star2.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star3.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
@@ -75,6 +81,7 @@ namespace Proyecto_Integrador.Resenas
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            RatingValue = 5;
             star1.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star2.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
             star3.Icon = FontAwesome.WPF.FontAwesomeIcon.Star;
@@ -90,18 +97,18 @@ namespace Proyecto_Integrador.Resenas
             }
             else
             {
-                ServiciosLugar resena = new ServiciosLugar();
-                ResenaLugares re = new ResenaLugares();
+                ServicioVideogames resena = new ServicioVideogames();
+                ResenaVideoGame re = new ResenaVideoGame();
                 re.Alias = txbUser.Text;
                 re.Calificacion = RatingValue;
                 re.Texto = txbResena.Text;
-                re.IdLugar = idDelLugar;
-                bool res = resena.InsertarResenaLugar(re);
+                re.IdGame = idDelGame;
+                bool res = resena.InsertarResenaVideogame(re);
                 if (res == true)
                 {
                     MessageBox.Show("Resena Guardada");
                     MainWindow main = new MainWindow();
-                    main.VerLugares();
+                    main.VerVideoGames();
                 }
                 else if (res == false)
                 {

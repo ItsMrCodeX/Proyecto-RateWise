@@ -23,6 +23,7 @@ namespace Proyecto_Integrador.Vistas
             InitializeComponent();
             idDelJuego = idDelGame;
             VaciarGlobalesResenas();
+            VerificarPermisos();
             CargarInfo(idDelGame);
 
         }
@@ -97,6 +98,35 @@ namespace Proyecto_Integrador.Vistas
 
             DataContext = videojuegos;
         }
+        public bool VerificarUsuario()
+        {
+
+            string user = Global.UsuarioActual;
+
+            if (string.IsNullOrEmpty(user))
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool VerificarPermisos()
+        {
+
+            string user = Global.UsuarioActual;
+            if (Global.VerificarAdmin(user))
+            {
+                stckAdmins.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                stckAdmins.Visibility = Visibility.Collapsed;
+            }
+            if (string.IsNullOrEmpty(user))
+            {
+                return false;
+            }
+            return true;
+        }
 
         public void VaciarGlobalesResenas()
         {
@@ -106,12 +136,72 @@ namespace Proyecto_Integrador.Vistas
 
         private void btnresenar_Click(object sender, RoutedEventArgs e)
         {
-
+            if (VerificarUsuario() == true)
+            {
+                MainWindow main = new MainWindow();
+                main.ResenarGame(Convert.ToInt16(idJuego.Content), txtTitulo.Text);
+            }
+            else if (VerificarUsuario() == false)
+            {
+                MainWindow main = new MainWindow();
+                Global.TipoResenar = 2;
+                Global.IdAResenar = idDelJuego;
+                main.IrAIniciar();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BorrarCnPermiso_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (VerificarPermisos())
+            {
+                if (controlGames.Borrar(idDelJuego))
+                {
+                    MessageBox.Show("Borrado Con Exito!");
+                    MainWindow main = new MainWindow();
+                    main.VerVideoGames();
+                }
+                else
+                {
+                    MessageBox.Show("Revisa que este lugar no tenga Reseñas!");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Como es que ves esto?");
+                MainWindow main = new MainWindow();
+                main.AbrirVerInfoJuego(idDelJuego);
+            }
+        }
+
+        private void BorrarRsCnPermiso_Click(object sender, RoutedEventArgs e)
+        {
+            if (VerificarPermisos())
+            {
+                if (controlGames.BorrarResenas(idDelJuego))
+                {
+                    MessageBox.Show("Reseñas Borradas Con Exito!");
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron Reseñas! \n A ocurrido un error");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Como es que ves esto?");
+                MainWindow main = new MainWindow();
+                main.AbrirVerInfoLugar(idDelJuego);
+            }
         }
     }
 }

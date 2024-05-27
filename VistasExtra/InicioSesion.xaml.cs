@@ -36,10 +36,7 @@ namespace Proyecto_Integrador.VistasExtra
 
                 if (res == true)
                 {
-                    new ToastContentBuilder()
-                .AddArgument("action", "viewConversation")
-                .AddArgument("conversationId", 9813)
-                .AddText("Sesion Iniciada");
+                    
                     MessageBox.Show("Sesion Iniciada");
                     if (Global.IdAResenar == null || Global.IdAResenar == 0 || Global.TipoResenar == null || Global.TipoResenar == 0)
                     {
@@ -61,6 +58,11 @@ namespace Proyecto_Integrador.VistasExtra
                                 id = Global.IdAResenar;
                                 Global.UsuarioActual = txtUsuario.Text;
                                 mainWindow.AbrirVerInfoLugar(id);
+                                break;
+                            case 2:
+                                id = Global.IdAResenar;
+                                Global.UsuarioActual= txtUsuario.Text;
+                                mainWindow.AbrirVerInfoJuego(id);
                                 break;
                         }
                     }

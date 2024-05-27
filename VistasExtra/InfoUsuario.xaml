@@ -106,13 +106,11 @@
 
     </UserControl.Resources>
     <Grid>
-        <!-- Definición de las columnas del grid -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.3*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Imagen redonda con icono de edición -->
         <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
            
                 <Image Width="380" Height="380" x:Name="ImagenUsuario"/>
@@ -122,12 +120,17 @@
 
         </StackPanel>
 
-        <!-- Sección de perfil -->
         <StackPanel Grid.Column="1" Margin="20">
             <TextBlock Text="Mi perfil!" FontSize="40" FontWeight="Bold" Foreground="Black" Margin="0,20,0,20" />
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Información" FontSize="14" Foreground="Gray" Margin="0,10,0,20" />
-                <Button  Height="40" Width="110" Margin="720,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonStyleSecondary}" x:Name="btnEditar" Click="btnEditar_Click"> 
+                <Button  Height="40" Width="110" Margin="590,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonStyleSecondary}" x:Name="btnSalir" Click="btnSalir_Click" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="WindowCloseOutline" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20"/>
+                        <TextBlock Text="Salir" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
+                    </StackPanel>
+                </Button>
+                <Button  Height="40" Width="110" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource ButtonStyleSecondary}" x:Name="btnEditar" Click="btnEditar_Click"> 
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Pencil" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Center" FontSize="20"/>
                         <TextBlock Text="Editar" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
@@ -140,7 +143,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Campos de información -->
                 <StackPanel x:Name="stckLeft" Grid.Column="0" Margin="0,100,10,0">
                     <StackPanel Orientation="Vertical" Margin="0,10">
                         <TextBlock Text="Alias" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
@@ -186,5 +188,7 @@ IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
             <!-- Botones de Guardar y Ver reseñas -->
 
         </StackPanel>
+        
     </Grid>
+    
 </UserControl>
