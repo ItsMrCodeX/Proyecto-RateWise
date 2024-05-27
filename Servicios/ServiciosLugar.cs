@@ -147,6 +147,30 @@ namespace Proyecto_Integrador.Servicios
             }
 
         }
+        public bool BorrarResenas(int id)
+        {
+            try
+            {
+                if (this.AbrirConexion())
+                {
+                    MySqlCommand cmd = new MySqlCommand("Delete from resenaslugares where idlugares=@id", conexion);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    this.CerrarConexion();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
 
         public List<Lugar> getLugares()
         {

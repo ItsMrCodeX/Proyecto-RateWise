@@ -25,6 +25,8 @@ namespace Proyecto_Integrador.Vistas
             idDelLugar = lugar;
             VaciarGlobalesResenas();
             CargarInfo(lugar);
+            if (VerificarPermisos())
+                MessageBox.Show($"Hola Administrador: {Global.UsuarioActual}");
 
 
         }
@@ -110,14 +112,31 @@ namespace Proyecto_Integrador.Vistas
         {
 
             string user = Global.UsuarioActual;
-
+            
             if (string.IsNullOrEmpty(user))
             {
                 return false;
             }
             return true;
         }
+        public bool VerificarPermisos()
+        {
 
+            string user = Global.UsuarioActual;
+            if (Global.VerificarAdmin(user))
+            {
+                stckAdmins.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                stckAdmins.Visibility = Visibility.Collapsed;
+            }
+            if (string.IsNullOrEmpty(user))
+            {
+                return false;
+            }
+            return true;
+        }
 
         private void verenmapa_Click(object sender, RoutedEventArgs e)
         {
@@ -131,6 +150,60 @@ namespace Proyecto_Integrador.Vistas
         {
             MainWindow main = new MainWindow();
             main.VerResenasLugar(idDelLugar);
+        }
+
+        private void BorrarCnPermiso_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BorrarCnPermiso_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (VerificarPermisos())
+            {
+                if (controlLugares.Borrar(idDelLugar))
+                {
+                    MessageBox.Show("Borrado Con Exito!");
+                    MainWindow main = new MainWindow();
+                    main.VerLugares();
+                }else
+                {
+                    MessageBox.Show("Revisa que este lugar no tenga Reseñas!");
+                }
+                
+                
+            }
+            else
+            {
+                MessageBox.Show("Como es que ves esto?");
+                MainWindow main = new MainWindow();
+                main.AbrirVerInfoLugar(idDelLugar);
+            }
+
+        }
+
+        private void BorrarRsCnPermiso_Click(object sender, RoutedEventArgs e)
+        {
+            if (VerificarPermisos())
+            {
+                if (controlLugares.BorrarResenas(idDelLugar))
+                {
+                    MessageBox.Show("Reseñas Borradas Con Exito!");
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron Reseñas! \n A ocurrido un error");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Como es que ves esto?");
+                MainWindow main = new MainWindow();
+                main.AbrirVerInfoLugar(idDelLugar);
+            }
         }
 
         private void btnresenar_Click(object sender, RoutedEventArgs e)

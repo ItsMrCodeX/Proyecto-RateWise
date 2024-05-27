@@ -2,9 +2,7 @@
 using Proyecto_Integrador.Modelos;
 using Proyecto_Integrador.Modelos.ModelosResenas;
 using System.Configuration;
-using System.IO;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace Proyecto_Integrador.Servicios
 {

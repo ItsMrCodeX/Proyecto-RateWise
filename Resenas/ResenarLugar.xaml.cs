@@ -3,14 +3,13 @@ using Proyecto_Integrador.Modelos.ModelosResenas;
 using Proyecto_Integrador.Servicios;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace Proyecto_Integrador.Resenas
 {
     public partial class ResenarLugar : UserControl
     {
         public int RatingValue { get; private set; }
-        
+
         int idDelLugar = -1;
 
         public ResenarLugar(int idlugar, string nomlugar)

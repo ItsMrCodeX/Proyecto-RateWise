@@ -5,7 +5,6 @@ using Proyecto_Integrador.Resenas.VerResenas;
 using Proyecto_Integrador.Vistas;
 using Proyecto_Integrador.VistasExtra;
 using System.Windows;
-using System.Windows.Media;
 
 namespace Proyecto_Integrador
 {
