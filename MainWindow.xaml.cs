@@ -4,7 +4,9 @@ using Proyecto_Integrador.Resenas;
 using Proyecto_Integrador.Resenas.VerResenas;
 using Proyecto_Integrador.Vistas;
 using Proyecto_Integrador.VistasExtra;
+using Proyecto_Integrador.VistasExtra.EditoresAdministradores;
 using System.Windows;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Proyecto_Integrador
 {
@@ -16,6 +18,7 @@ namespace Proyecto_Integrador
         public MainWindow()
         {
             InitializeComponent();
+            Global.UsuarioActual = "ItsMrCodeX";
             lblUsuarioActual.Content = Global.UsuarioActual;
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
         }
@@ -188,6 +191,19 @@ namespace Proyecto_Integrador
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             VerVideoGames();
+        }
+
+
+        // Actualizar Con Permisos
+        public void ActualizarLugar(int idLugar)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+
+                mainWindow.Cnt_main.Content = new ActualizarLugar(idLugar);
+
+            }
         }
     }
 }

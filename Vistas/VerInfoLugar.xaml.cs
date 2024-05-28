@@ -201,6 +201,12 @@ namespace Proyecto_Integrador.Vistas
             }
         }
 
+        private void ActualizarCnPermiso_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.ActualizarLugar(idDelLugar);
+        }
+
         private void btnresenar_Click(object sender, RoutedEventArgs e)
         {
             if (VerificarUsuario() == true)
