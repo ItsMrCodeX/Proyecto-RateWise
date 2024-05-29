@@ -21,10 +21,12 @@ namespace Proyecto_Integrador.Vistas
         public VerInfoGame(int idDelGame)
         {
             InitializeComponent();
+            VerificarPermisos();
             idDelJuego = idDelGame;
             VaciarGlobalesResenas();
-            VerificarPermisos();
             CargarInfo(idDelGame);
+
+
 
         }
 
@@ -202,6 +204,12 @@ namespace Proyecto_Integrador.Vistas
                 MainWindow main = new MainWindow();
                 main.AbrirVerInfoLugar(idDelJuego);
             }
+        }
+
+        private void ActualizarCnPermiso_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.ActualizarJuego(idDelJuego);
         }
     }
 }

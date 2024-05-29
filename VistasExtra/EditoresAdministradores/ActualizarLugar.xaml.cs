@@ -2,21 +2,10 @@
 using Proyecto_Integrador.Globales;
 using Proyecto_Integrador.Modelos;
 using Proyecto_Integrador.Servicios;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
 {
@@ -33,8 +22,8 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
             LugarCambio = idLugarACambiar;
             LlenarCMBS();
             CargarDatos();
-            
-            
+
+
         }
 
         public void CargarDatos()
@@ -47,9 +36,9 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
             txtcontacto.Text = lugar.Contacto.ToString();
             txbDescripcion.Text = lugar.Descripcion.ToString();
             txtLatitud.Text = lugar.Latitud.ToString();
-            txtLongitud.Text= lugar.Longitud.ToString();
-            txbDireccion.Text=lugar.Direccion.ToString();
-            txbNombre.Text=lugar.Nombre.ToString();
+            txtLongitud.Text = lugar.Longitud.ToString();
+            txbDireccion.Text = lugar.Direccion.ToString();
+            txbNombre.Text = lugar.Nombre.ToString();
 
 
             string string64 = lugar.Fotografia.Substring(10);
@@ -62,8 +51,8 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
             lugar.Imagen = bi;
             ImagenLugar.ImageSource = lugar.Imagen;
 
-            cmbRegion.SelectedIndex = lugar.IdRegion-1;
-            cmbTipoLugar.SelectedIndex = lugar.IdTipoLugar-1;
+            cmbRegion.SelectedIndex = lugar.IdRegion - 1;
+            cmbTipoLugar.SelectedIndex = lugar.IdTipoLugar - 1;
 
         }
 
@@ -80,7 +69,7 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
         {
 
             string user = Global.UsuarioActual;
-            
+
             if (string.IsNullOrEmpty(user))
             {
                 return false;
@@ -178,7 +167,7 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
             {
                 MessageBox.Show("Error al cargar imagen");
             }
-            
+
 
             return imagenBase64;
         }
@@ -204,6 +193,6 @@ namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
         }
     }
 
-    
+
 
 }

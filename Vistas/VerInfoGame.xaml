@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:Proyecto_Integrador.Vistas"
              mc:Ignorable="d" 
              xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
-             d:DesignHeight="875" d:DesignWidth="1370">
+             xmlns:fa="http://schemas.fontawesome.io/icons/" d:DesignWidth="1370" Height="1103">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="White"/>
@@ -91,16 +90,17 @@ CornerRadius="10">
         </Style>
 
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="450"/>
-        </Grid.ColumnDefinitions>
-        
-        
-            <ScrollViewer Grid.Column="0" Margin="20" Height="auto" Width="auto">
-                <ui:SimpleStackPanel Margin="10">
-                    <TextBlock x:Name="txtTitulo" Text="Titulo Aqui" FontSize="90" Margin="30" TextWrapping="Wrap"/>
+    <ScrollViewer  VerticalScrollBarVisibility ="Visible" >
+        <Grid Margin="10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="450"/>
+            </Grid.ColumnDefinitions>
+
+                <ui:SimpleStackPanel Orientation="Vertical" Grid.Column="0">
+
+                    <TextBlock x:Name="txtTitulo" Text="Titulo Aqui" FontSize="90"  TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,20,0">
                             <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Genero" FontSize="50" Background="#e1ad01" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
@@ -117,7 +117,7 @@ CornerRadius="10">
                     </StackPanel>
                     <ui:SimpleStackPanel Margin="10">
                         <Label Foreground="Gray" Content="Descripción" FontWeight="Bold" FontSize="40"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" x:Name="txbDescripcion" FontSize="29" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida."/>
+                        <TextBlock TextWrapping="WrapWithOverflow" x:Name="txbDescripcion" FontSize="29"><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida."/><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec adipiscing nulla quis libero egestas lobortis. Duis blandit imperdiet ornare. Nulla ac arcu ut purus placerat congue. Integer pretium fermentum gravida."/><LineBreak/></TextBlock>
                     </ui:SimpleStackPanel>
                     <ui:SimpleStackPanel Margin="10" x:Name="stckResenas">
                         <Label Foreground="Gray" Content="Ultima Reseña" FontSize="30" FontWeight="Bold"/>
@@ -139,52 +139,54 @@ CornerRadius="10">
                         <Button Content="Reseñar" Width="280" Height="70" Margin="50,0,110,0" Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" x:Name="btnresenar" Click="btnresenar_Click"/>
                         <Button Content="Ver Reseñas" Width="280" Height="70"  Background="#5E239D" Foreground="White" FontSize="28" Style="{StaticResource ButtonStylePrimary}" Click="Button_Click" />
                     </StackPanel>
-                <StackPanel x:Name="stckAdmins" Visibility="Collapsed">
+                    <StackPanel x:Name="stckAdmins" Visibility="Visible" HorizontalAlignment="Center" Margin="0">
 
-                    <StackPanel Orientation="Horizontal" >
-                        <Button Width="180" Height="70" Margin="50,0,110,0" HorizontalContentAlignment="Center"  Background="#5E239D" Foreground="White" x:Name="BorrarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarCnPermiso_Click_1" >
-                            <fa:FontAwesome Icon="Trash" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
-                        </Button>
-                        <Button Width="180" Height="70"  HorizontalContentAlignment="Center" Background="#5E239D" Foreground="White" x:Name="BorrarRsCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarRsCnPermiso_Click"  >
-                            <fa:FontAwesome Icon="Remove" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
-                        </Button>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Width="180" Height="70" Margin="50,0,110,0" HorizontalContentAlignment="Center"  Background="#5E239D" Foreground="White" x:Name="BorrarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarCnPermiso_Click_1" >
+                                <fa:FontAwesome Icon="Trash" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                            </Button>
+                            <Button Width="180" Height="70"  HorizontalContentAlignment="Center" Background="#5E239D" Foreground="White" x:Name="BorrarRsCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarRsCnPermiso_Click"  >
+                                <fa:FontAwesome Icon="Remove" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                            </Button>
 
-                    </StackPanel>
-                    <Button Width="480" Height="70"  HorizontalContentAlignment="Left" Margin="-100,0,0,0" Background="#5E239D" Foreground="White" x:Name="ActualizarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="BorrarRsCnPermiso_Click"  >
-
-                        <StackPanel Orientation="Horizontal">
-                            <fa:FontAwesome Icon="Pencil" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
-                            <TextBlock Text="Actualizar"/>
                         </StackPanel>
-                    </Button>
-                </StackPanel>
+                        <Button Margin="50,0,0,0" Width="480" Height="70"  HorizontalContentAlignment="Left" Background="#5E239D" Foreground="White" x:Name="ActualizarCnPermiso"  FontSize="50" Style="{StaticResource ButtonStylePrimary}" Click="ActualizarCnPermiso_Click" >
+
+                            <StackPanel Orientation="Horizontal">
+                                <fa:FontAwesome Icon="Pencil" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" TextAlignment="Center"/>
+                                <TextBlock Text="Actualizar"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                </ui:SimpleStackPanel>
+
+            
+
+
+            <ui:SimpleStackPanel Grid.Column="1">
+                <Border CornerRadius="20" Height="460" MaxHeight="520" Margin="55,185,39,0" x:Name="BordeImagenLugar">
+                    <Border.Background>
+                        <ImageBrush Stretch="UniformToFill" x:Name="imagenGame" ImageSource="/Vistas/PlaceholderMapa.png"/>
+                    </Border.Background>
+                </Border>
+                <ui:ScrollViewerEx>
+                    <StackPanel>
+                        <ui:SimpleStackPanel Margin="10">
+                            <Label Foreground="Gray" Content="Fecha de estreno" FontWeight="Bold" FontSize="35"/>
+                            <TextBlock TextWrapping="WrapWithOverflow" x:Name="txtFecha" FontSize="29" Text="exa"/>
+                        </ui:SimpleStackPanel>
+                        <ui:SimpleStackPanel Margin="10">
+                            <Label Foreground="Gray" Content="Calificacion Promedio" FontWeight="Bold" FontSize="35"/>
+                            <TextBlock TextWrapping="WrapWithOverflow" x:Name="txbCalPromedio" FontSize="29" Text="exa"/>
+                        </ui:SimpleStackPanel>
+                    </StackPanel>
+                </ui:ScrollViewerEx>
+
             </ui:SimpleStackPanel>
-                
-            </ScrollViewer>
-            
-        
-        <ui:SimpleStackPanel Grid.Column="1">
-            <Border CornerRadius="20" Height="460" MaxHeight="520" Width="320" Margin="30,185,30,0" x:Name="BordeImagenLugar">
-                <Border.Background>
-                    <ImageBrush Stretch="UniformToFill" x:Name="imagenGame" ImageSource="/Vistas/PlaceholderMapa.png"/>
-                </Border.Background>
-            </Border>
-            <ui:ScrollViewerEx>
-                <StackPanel>
-                    <ui:SimpleStackPanel Margin="10">
-                        <Label Foreground="Gray" Content="Fecha de estreno" FontWeight="Bold" FontSize="35"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" x:Name="txtFecha" FontSize="29" Text="exa"/>
-                    </ui:SimpleStackPanel>
-                    <ui:SimpleStackPanel Margin="10">
-                        <Label Foreground="Gray" Content="Calificacion Promedio" FontWeight="Bold" FontSize="35"/>
-                        <TextBlock TextWrapping="WrapWithOverflow" x:Name="txbCalPromedio" FontSize="29" Text="exa"/>
-                    </ui:SimpleStackPanel>
-                </StackPanel>
-            </ui:ScrollViewerEx>
-            
-        </ui:SimpleStackPanel>
-        <Label Name="idJuego" Foreground="Transparent" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
-        
-    </Grid>
-    
+            <Label Name="idJuego" Foreground="Transparent" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+        </Grid>
+    </ScrollViewer>
+
 </UserControl>

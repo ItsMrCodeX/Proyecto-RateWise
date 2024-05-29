@@ -466,5 +466,121 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public List<string> MostrarGenero()
+        {
+            string query = "SELECT nombre FROM generovideojuego";
+            List<string> tipolugares = new List<string>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string nombreRegion = Convert.ToString(dataReader["nombre"]);
+                        tipolugares.Add(nombreRegion);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+            return tipolugares;
+        }
+        public List<string> MostrarPlataforma()
+        {
+            string query = "SELECT nombre FROM plataformas";
+            List<string> tipolugares = new List<string>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string nombreRegion = Convert.ToString(dataReader["nombre"]);
+                        tipolugares.Add(nombreRegion);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+            return tipolugares;
+        }
+
+        public List<string> MostrarDescarga()
+        {
+            string query = "SELECT nombre FROM plataformadescarga";
+            List<string> tipolugares = new List<string>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        string nombreRegion = Convert.ToString(dataReader["nombre"]);
+                        tipolugares.Add(nombreRegion);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
+
+            return tipolugares;
+        }
+
     }
 }

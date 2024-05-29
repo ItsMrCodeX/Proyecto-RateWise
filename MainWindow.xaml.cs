@@ -6,7 +6,6 @@ using Proyecto_Integrador.Vistas;
 using Proyecto_Integrador.VistasExtra;
 using Proyecto_Integrador.VistasExtra.EditoresAdministradores;
 using System.Windows;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Proyecto_Integrador
 {
@@ -151,6 +150,19 @@ namespace Proyecto_Integrador
                 mainWindow.Cnt_main.Content = new RegistrarUsuarios();
             }
         }
+        public void RegistrarVideojuego()
+        {
+
+            // Obtén una referencia a MainWindow
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+
+            // Comprueba si mainWindow no es null
+            if (mainWindow != null)
+            {
+                mainWindow.ActualizaUsuario();
+                mainWindow.Cnt_main.Content = new RegistrarVideogames();
+            }
+        }
 
         public void ResenarLugar(int id, string nombre)
         {
@@ -202,6 +214,17 @@ namespace Proyecto_Integrador
             {
 
                 mainWindow.Cnt_main.Content = new ActualizarLugar(idLugar);
+
+            }
+        }
+
+        public void ActualizarJuego(int idJuego)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+
+                mainWindow.Cnt_main.Content = new ActualizarVideojuego(idJuego);
 
             }
         }

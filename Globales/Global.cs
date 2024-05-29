@@ -8,11 +8,11 @@
 
         private static string AdminAutorizado = "ItsMrCodeX";
 
-        public static bool VerificarAdmin (string user)
+        public static bool VerificarAdmin(string user)
         {
             if (user == AdminAutorizado)
                 return true;
-            else 
+            else
                 return false;
         }
     }

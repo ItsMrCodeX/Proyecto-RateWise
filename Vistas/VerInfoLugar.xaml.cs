@@ -112,7 +112,7 @@ namespace Proyecto_Integrador.Vistas
         {
 
             string user = Global.UsuarioActual;
-            
+
             if (string.IsNullOrEmpty(user))
             {
                 return false;
@@ -161,12 +161,13 @@ namespace Proyecto_Integrador.Vistas
                     MessageBox.Show("Borrado Con Exito!");
                     MainWindow main = new MainWindow();
                     main.VerLugares();
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Revisa que este lugar no tenga Reseñas!");
                 }
-                
-                
+
+
             }
             else
             {

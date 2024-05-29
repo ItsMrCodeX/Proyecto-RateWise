@@ -11,7 +11,7 @@
 
     <Grid x:Name="LayoutRoot" Margin="20">
 
-        <Button fa:Awesome.Content="Gamepad" Style="{StaticResource AccentButtonStyle}" FontSize="35" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="60" />
+        <Button fa:Awesome.Content="Gamepad" Style="{StaticResource AccentButtonStyle}" FontSize="35" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="60" Click="Button_Click" />
         <Grid Height="10"/>
 
         <ScrollViewer HorizontalAlignment="Center" Width="1230" Margin="0,130,0,-130">

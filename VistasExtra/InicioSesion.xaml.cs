@@ -36,7 +36,7 @@ namespace Proyecto_Integrador.VistasExtra
 
                 if (res == true)
                 {
-                    
+
                     MessageBox.Show("Sesion Iniciada");
                     if (Global.IdAResenar == null || Global.IdAResenar == 0 || Global.TipoResenar == null || Global.TipoResenar == 0)
                     {
@@ -61,7 +61,7 @@ namespace Proyecto_Integrador.VistasExtra
                                 break;
                             case 2:
                                 id = Global.IdAResenar;
-                                Global.UsuarioActual= txtUsuario.Text;
+                                Global.UsuarioActual = txtUsuario.Text;
                                 mainWindow.AbrirVerInfoJuego(id);
                                 break;
                         }

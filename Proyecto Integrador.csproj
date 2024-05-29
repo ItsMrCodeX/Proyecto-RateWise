@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Resenas\vacia.png" />
+    <None Remove="VistasExtra\gameplaceholder.png" />
     <None Remove="VistasExtra\Inicio.png" />
     <None Remove="VistasExtra\mapplaceholder.jpg" />
   </ItemGroup>
@@ -30,6 +31,7 @@
 
   <ItemGroup>
     <Resource Include="Resenas\vacia.png" />
+    <Resource Include="VistasExtra\gameplaceholder.png" />
     <Resource Include="VistasExtra\Inicio.png" />
     <Resource Include="VistasExtra\mapplaceholder.jpg" />
     <Resource Include="VistasExtra\placeholderadd.jpg" />
