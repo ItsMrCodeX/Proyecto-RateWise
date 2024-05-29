@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ParaErrores\**" />
+    <EmbeddedResource Remove="ParaErrores\**" />
+    <None Remove="ParaErrores\**" />
+    <Page Remove="ParaErrores\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resenas\vacia.png" />
     <None Remove="VistasExtra\gameplaceholder.png" />
     <None Remove="VistasExtra\Inicio.png" />
@@ -56,10 +63,6 @@
 
   <ItemGroup>
     <PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ParaErrores\" />
   </ItemGroup>
 
 </Project>

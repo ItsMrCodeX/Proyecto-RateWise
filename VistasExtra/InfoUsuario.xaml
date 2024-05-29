@@ -150,9 +150,10 @@ IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
                         <TextBox IsEnabled="False" Background="Gray" Name="txtAlias" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0,10">
-                        <TextBlock Text="Materno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+                        <TextBlock Text="Paterno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
 IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
-                        <TextBox Name="txtAMaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                        <TextBox Name="txtAPaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                        
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0,10">
                         <TextBlock Text="Correo" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
@@ -170,9 +171,9 @@ IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
                         <TextBox Name="txtNombre" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0,10">
-                        <TextBlock Text="Paterno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
+                        <TextBlock Text="Materno" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
 IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
-                        <TextBox Name="txtAPaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
+                        <TextBox Name="txtAMaterno" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0,10">
                         <TextBlock Text="Contraseña" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center"
