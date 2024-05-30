@@ -25,6 +25,8 @@ namespace Proyecto_Integrador.VistasExtra
         {
             InitializeComponent();
             cargarLugares();
+            cargarVideojuego();
+            cargarEntretenimiento();
         }
 
         public class ResenaInfo
@@ -86,6 +88,59 @@ namespace Proyecto_Integrador.VistasExtra
             }
         }
 
+        public void cargarVideojuego()
+        {
+            controlVideojuegos = new ServicioVideogames();
+            List<ResenaVideoGame> lugares = controlVideojuegos.MostrarResenasPorUsuario(Global.UsuarioActual);
+            List<ResenaInfo> Nombrelugares = new List<ResenaInfo>();
+            ServicioVideogames buscador = new ServicioVideogames();
+
+            foreach (ResenaVideoGame place in lugares)
+            {
+
+                List<Videojuegos> buscarlugares = buscador.getVideojuegosPorId(place.IdGame);
+                if (buscarlugares.Count > 0)
+                {
+                    ResenaInfo resena = new ResenaInfo
+                    {
+                        Nombre = buscarlugares[0].Nombre,
+                        Calificacion = place.Calificacion,
+                        Texto = place.Texto,
+                        Imagen = base64AImagen(buscarlugares[0].Poster)
+                    };
+                    Nombrelugares.Add(resena);
+                }
+            }
+
+            ListBoxVideojuegos.ItemsSource = Nombrelugares;
+        }
+
+        public void cargarEntretenimiento()
+        {
+            controlEntretenimiento = new ServicioEntretenimiento();
+            List<ResenaEntretenimiento> lugares = controlEntretenimiento.MostrarResenasPorUsuario(Global.UsuarioActual);
+            List<ResenaInfo> Nombrelugares = new List<ResenaInfo>();
+            ServicioEntretenimiento buscador = new ServicioEntretenimiento();
+
+            foreach (ResenaEntretenimiento place in lugares)
+            {
+
+                List<Entretenimiento> buscarlugares = buscador.getEntretenimientoPorId(place.IdEntreten);
+                if (buscarlugares.Count > 0)
+                {
+                    ResenaInfo resena = new ResenaInfo
+                    {
+                        Nombre = buscarlugares[0].Nombre,
+                        Calificacion = place.Calificacion,
+                        Texto = place.Texto,
+                        Imagen = base64AImagen(buscarlugares[0].Poster)
+                    };
+                    Nombrelugares.Add(resena);
+                }
+            }
+
+            ListEntretenimiento.ItemsSource = Nombrelugares;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -655,5 +655,48 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public List<ResenaEntretenimiento> MostrarResenasPorUsuario(string nomUsuario)
+        {
+            List<ResenaEntretenimiento> resenas = new List<ResenaEntretenimiento>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenasentretenimiento where alias = @nomuser", conexion);
+                cmd.Parameters.AddWithValue("@nomuser", nomUsuario);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        ResenaEntretenimiento resena = new ResenaEntretenimiento();
+                        resena.Id = Convert.ToInt32(dataReader["idresenasentreten"]);
+                        resena.Calificacion = Convert.ToDouble(dataReader["Calificacion"]);
+                        resena.Texto = Convert.ToString(dataReader["textoresena"]);
+                        resena.Alias = Convert.ToString(dataReader["alias"]);
+                        resena.IdEntreten = Convert.ToInt16(dataReader["identreten"]);
+                        resenas.Add(resena);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+                CerrarConexion();
+                return resenas;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

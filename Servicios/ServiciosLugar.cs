@@ -645,50 +645,6 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public List<ResenaLugares> MostrarResenasLugarUsuario(string alias)
-        {
-            List<ResenaLugares> resenas = new List<ResenaLugares>();
-
-            if (this.AbrirConexion())
-            {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenaslugares where alias = @alias", conexion);
-                try
-                {
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    cmd.Parameters.AddWithValue("@alias", alias);
-
-                    while (dataReader.Read())
-                    {
-                        ResenaLugares resena = new ResenaLugares();
-                        resena.IdResenaLugares = Convert.ToInt32(dataReader["IdResenasLugares"]);
-                        resena.Calificacion = Convert.ToDouble(dataReader["Calificacion"]);
-                        resena.Texto = Convert.ToString(dataReader["textoresena"]);
-                        resena.Alias = Convert.ToString(dataReader["alias"]);
-                        resena.IdLugar = Convert.ToInt16(dataReader["IdLugares"]);
-                        resenas.Add(resena);
-                    }
-                    dataReader.Close();
-                }
-                catch (MySqlException ex1)
-                {
-                    MessageBox.Show("M1: "+ex1.Message);
-                    return null;
-                }
-                catch (Exception ex2)
-                {
-                    MessageBox.Show("M2: " + ex2.StackTrace);
-                    MessageBox.Show(ex2.Message);
-                    return null;
-                }
-                CerrarConexion();
-                return resenas;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public List<ResenaLugares> MostrarResenasPorUsuario(string nomUsuario)
         {
             List<ResenaLugares> resenas = new List<ResenaLugares>();
