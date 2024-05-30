@@ -76,7 +76,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Imagen de la izquierda -->
-        <Border Background="#D3BFF6" Margin="40,40,31,40" CornerRadius="10">
+        <Border Background="Transparent" Margin="40,40,31,40" CornerRadius="10">
             <Image Source="/VistasExtra/Inicio.png" />
         </Border>
 

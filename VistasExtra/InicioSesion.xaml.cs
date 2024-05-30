@@ -64,6 +64,11 @@ namespace Proyecto_Integrador.VistasExtra
                                 Global.UsuarioActual = txtUsuario.Text;
                                 mainWindow.AbrirVerInfoJuego(id);
                                 break;
+                            case 3:
+                                id = Global.IdAResenar;
+                                Global.UsuarioActual = txtUsuario.Text;
+                                mainWindow.AbrirVerEntretenimiento(id);
+                                break;
                         }
                     }
 

@@ -5,29 +5,29 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace Proyecto_Integrador
+namespace Proyecto_Integrador.Vistas
 {
     /// <summary>
-    /// Lógica de interacción para LugaresControl.xaml
+    /// Lógica de interacción para ControlEntretenimiento.xaml
     /// </summary>
-    public partial class LugaresControl : UserControl
+    public partial class ControlEntretenimiento : UserControl
     {
-        public List<Lugar> Lugares { get; set; }
+        public List<Entretenimiento> Entretenimiento { get; set; }
 
-        private ServiciosLugar controlLugares;
-        public LugaresControl()
+        private ServicioEntretenimiento controlEntretenimiento;
+        public ControlEntretenimiento()
         {
             InitializeComponent();
-            controlLugares = new ServiciosLugar();
-            List<Lugar> lugares = controlLugares.getLugares();
+            controlEntretenimiento = new ServicioEntretenimiento();
+            List<Entretenimiento> entretenimientos = controlEntretenimiento.getEntretenimiento();
 
-            foreach (Lugar place in lugares)
+            foreach (Entretenimiento entreten in entretenimientos)
             {
-                if (!string.IsNullOrEmpty(place.Fotografia))
+                if (!string.IsNullOrEmpty(entreten.Poster))
                 {
                     try
                     {
-                        string base64String = place.Fotografia;
+                        string base64String = entreten.Poster;
                         byte[] binaryData = Convert.FromBase64String(base64String);
 
                         BitmapImage bi = new BitmapImage();
@@ -37,38 +37,38 @@ namespace Proyecto_Integrador
                         bi.EndInit();
                         bi.Freeze();
 
-                        place.Imagen = bi;
+                        entreten.Imagen = bi;
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error al cargar imagen para {place.Nombre}: {ex.Message}");
+                        MessageBox.Show($"Error al cargar imagen para {entreten.Nombre}: {ex.Message}");
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"La fotografía está vacía o es nula para {place.Nombre}.");
+                    MessageBox.Show($"La fotografía está vacía o es nula para {entreten.Nombre}.");
                 }
             }
 
-            MiListBox.ItemsSource = lugares;
+            MiListBox.ItemsSource = entretenimientos;
         }
 
         private void MiListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var listBox = (ListBox)sender;
-            Lugar lugar = (Lugar)listBox.SelectedItem;
-            if (lugar != null)
+            Entretenimiento entreten = (Entretenimiento)listBox.SelectedItem;
+            if (entreten != null)
             {
-                int id = lugar.Id;
+                int id = entreten.Id;
                 MainWindow main = (MainWindow)Application.Current.MainWindow;
-                main.AbrirVerInfoLugar(id);
+                main.AbrirVerEntretenimiento(id);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
-            main.RegistrarLugare();
+            main.RegistrarEntretenimiento();
         }
     }
 }

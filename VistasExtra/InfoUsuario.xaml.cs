@@ -18,10 +18,11 @@ namespace Proyecto_Integrador.VistasExtra
         {
             InitializeComponent();
             cargarInformacion();
+            stckbtnVerResenas.IsEnabled = true;
             stckbtnGuardar.IsEnabled = false;
             stckLeft.IsEnabled = false;
             stckRight.IsEnabled = false;
-            stckbtnVerResenas.IsEnabled = false;
+            stckbtnVerResenas.IsEnabled = true;
             AgregarImagen.Visibility = Visibility.Collapsed;
         }
 
@@ -41,7 +42,6 @@ namespace Proyecto_Integrador.VistasExtra
 
                 if (actual.Avatar != null)
                 {
-
                     ImagenUsuario.Source = actual.Imagen;
                 }
 
@@ -116,8 +116,8 @@ namespace Proyecto_Integrador.VistasExtra
                     if (res)
                     {
                         MessageBox.Show("Usuario Guardado Correctamente");
-                        InfoUsuario mainWindow = new InfoUsuario();
-                        mainWindow.cargarInformacion();
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.VerInfoUsuario();
                     }
 
                 }
@@ -166,6 +166,12 @@ namespace Proyecto_Integrador.VistasExtra
             MainWindow main = new MainWindow();
             main.ActualizaUsuario();
             main.VerInicio();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.VerResenasdeUsuario();
         }
     }
 }

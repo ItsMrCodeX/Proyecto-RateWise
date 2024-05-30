@@ -9,22 +9,21 @@ using System.Windows.Media.Imaging;
 namespace Proyecto_Integrador.Resenas.VerResenas
 {
     /// <summary>
-    /// Lógica de interacción para VerResenasLugares.xaml
+    /// Lógica de interacción para VerResenasGames.xaml
     /// </summary>
-    public partial class VerResenasLugares : UserControl
+    public partial class VerResenasGames : UserControl
     {
-        public List<ResenaLugares> Lugares { get; set; }
-        public MainWindow Main { get; set; }
+        public List<ResenaVideoGame> Games { get; set; }
 
-        private ServiciosLugar controlLugares;
-        public VerResenasLugares(int lugarid)
+        private ServicioVideogames controlJuegos;
+        public VerResenasGames(int gameId)
         {
             InitializeComponent();
-            controlLugares = new ServiciosLugar();
-            List<ResenaLugares> resenas = controlLugares.MostrarResenas(lugarid);
+            controlJuegos = new ServicioVideogames();
+            List<ResenaVideoGame> resenas = controlJuegos.MostrarResenas(gameId);
             ServicioUsuarios resenado = new ServicioUsuarios();
 
-            foreach (ResenaLugares resena in resenas)
+            foreach (ResenaVideoGame resena in resenas)
             {
                 Usuarios user = resenado.InfoUsuario(resena.Alias);
                 if (resena.Texto == "" || resena.Texto == " ")
@@ -59,15 +58,6 @@ namespace Proyecto_Integrador.Resenas.VerResenas
             }
 
             MiListBox.ItemsSource = resenas;
-        }
-
-
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            main.RegistrarLugare();
         }
     }
 }

@@ -9,106 +9,104 @@ using System.Windows.Media.Imaging;
 namespace Proyecto_Integrador.VistasExtra.EditoresAdministradores
 {
     /// <summary>
-    /// Lógica de interacción para ActualizarVideojuego.xaml
+    /// Lógica de interacción para ActualizarEntretenimiento.xaml
     /// </summary>
-    public partial class ActualizarVideojuego : UserControl
+    public partial class ActualizarEntretenimiento : UserControl
     {
         string imagen;
         int idJuego;
-        public ActualizarVideojuego(int idGame)
+        public ActualizarEntretenimiento(int idEntreten)
         {
-
             InitializeComponent();
-            idJuego = idGame;
+            idJuego = idEntreten;
             LlenarCMBS();
-            CargarDatos(idGame);
-
+            CargarDatos(idEntreten);
         }
 
         public void LlenarCMBS()
         {
-            ServicioVideogames game = new ServicioVideogames();
-            List<string> genero = game.MostrarGenero();
-            List<string> plataforma = game.MostrarPlataforma();
-            List<string> descarga = game.MostrarDescarga();
+            ServicioEntretenimiento movie = new ServicioEntretenimiento();
+            List<string> genero = movie.MostrarGenero();
+            List<string> plataforma = movie.MostrarPlataforma();
+            List<string> tipo = movie.MostrarTipo();
 
-            cmbDescarga.ItemsSource = descarga;
+            cmbTipo.ItemsSource = tipo;
             cmbGenero.ItemsSource = genero;
             cmbPlataforma.ItemsSource = plataforma;
         }
 
         public void CargarDatos(int GameACambiar)
         {
-            ServicioVideogames servicioVideogames = new ServicioVideogames();
+            ServicioEntretenimiento servicioEntretenimiento = new ServicioEntretenimiento();
 
-            List<Videojuegos> Juegos = servicioVideogames.getVideojuegosPorId(GameACambiar);
-            Videojuegos juego = Juegos[0];
+            List<Entretenimiento> entretenimientos = servicioEntretenimiento.getEntretenimientoPorId(GameACambiar);
+            Entretenimiento movie = entretenimientos[0];
 
-            txbNombre.Text = juego.Nombre;
-            imagen = juego.Poster;
-            txbDescripcion.Text = juego.Descripcion;
-            DateEstreno.SelectedDate = juego.FechaEstreno;
-            cmbDescarga.SelectedIndex = juego.IdPlataformaDescarga - 1;
-            cmbGenero.SelectedIndex = juego.IdGeneroVid - 1;
-            cmbPlataforma.SelectedIndex = juego.IdPlataforma - 1;
+            txbNombre.Text = movie.Nombre;
+            imagen = movie.Poster;
+            txbDescripcion.Text = movie.Descripcion;
+            DateEstreno.SelectedDate = movie.FechaEstreno;
+            cmbTipo.SelectedIndex = movie.IdTipoEntreten - 1;
+            cmbGenero.SelectedIndex = movie.IdGeneroEntreten - 1;
+            cmbPlataforma.SelectedIndex = movie.IdPlataformaEntreten - 1;
 
 
-            byte[] binaryData = Convert.FromBase64String(juego.Poster);
+            byte[] binaryData = Convert.FromBase64String(movie.Poster);
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
             bi.StreamSource = new MemoryStream(binaryData);
             bi.CacheOption = BitmapCacheOption.OnLoad;
             bi.EndInit();
-            juego.Imagen = bi;
-            ImagenLugar.ImageSource = juego.Imagen;
+            movie.Imagen = bi;
+            ImagenLugar.ImageSource = movie.Imagen;
         }
 
         public void GuardarLugar()
         {
-            ServicioVideogames Registro = new ServicioVideogames();
-            Videojuegos game = new Videojuegos();
+            ServicioEntretenimiento Registro = new ServicioEntretenimiento();
+            Entretenimiento movie = new Entretenimiento();
 
 
             if (string.IsNullOrEmpty(DateEstreno.SelectedDate.ToString()) == false || string.IsNullOrEmpty(txbNombre.Text)
                 || string.IsNullOrEmpty(txbDescripcion.Text) || cmbPlataforma.SelectedIndex != -1
-                || cmbGenero.SelectedIndex != -1 || cmbDescarga.SelectedIndex != -1 || string.IsNullOrEmpty(imagen))
+                || cmbGenero.SelectedIndex != -1 || cmbTipo.SelectedIndex != -1 || string.IsNullOrEmpty(imagen))
             {
                 string originalDate = DateEstreno.SelectedDate.ToString();
                 string fechaSinHora = originalDate.Substring(0, 10);
                 DateTime dt = DateTime.ParseExact(fechaSinHora, "dd/MM/yyyy", null);
                 string newDate = dt.ToString("yyyy-MM-dd"); // Resultado: "2021-03-08"
 
-                game.Id = idJuego;
-                game.Nombre = txbNombre.Text;
-                game.Descripcion = txbDescripcion.Text;
-                game.Poster = imagen;
-                game.FechaEstreno = Convert.ToDateTime(newDate);
-                game.IdGeneroVid = cmbGenero.SelectedIndex + 1;
-                game.IdPlataforma = cmbPlataforma.SelectedIndex + 1;
-                game.IdPlataformaDescarga = cmbDescarga.SelectedIndex + 1;
+                movie.Id = idJuego;
+                movie.Nombre = txbNombre.Text;
+                movie.Descripcion = txbDescripcion.Text;
+                movie.Poster = imagen;
+                movie.FechaEstreno = Convert.ToDateTime(newDate);
+                movie.IdGeneroEntreten = cmbGenero.SelectedIndex + 1;
+                movie.IdPlataformaEntreten = cmbPlataforma.SelectedIndex + 1;
+                movie.IdTipoEntreten = cmbTipo.SelectedIndex + 1;
 
-                bool res = Registro.Actualizar(game);
+                bool res = Registro.Actualizar(movie);
                 if (res == false)
                 {
-                    string fotografiaPreview = game.Poster != null && game.Poster.Length >= 10
-                    ? game.Poster.Substring(0, 10)
-                    : game.Poster;
+                    string fotografiaPreview = movie.Poster != null && movie.Poster.Length >= 10
+                    ? movie.Poster.Substring(0, 10)
+                    : movie.Poster;
                     MessageBox.Show(
-                        $"Nombre: {game.Nombre}\n" +
-                        $"Descripción: {game.Descripcion}\n" +
+                        $"Nombre: {movie.Nombre}\n" +
+                        $"Descripción: {movie.Descripcion}\n" +
                         $"Poster: {fotografiaPreview}\n" +
-                        $"ID Genero: {game.IdGeneroVid}\n" +
-                        $"ID Plataforma: {game.IdPlataforma}\n" +
-                        $"ID Descarga: {game.IdPlataformaDescarga}"
+                        $"ID Genero: {movie.IdGeneroEntreten}\n" +
+                        $"ID Plataforma: {movie.IdPlataformaEntreten}\n" +
+                        $"ID Tipo: {movie.IdTipoEntreten}"
                         );
 
 
                 }
                 else if (res == true)
                 {
-                    MessageBox.Show("Videojuego Editado Correctamente!");
+                    MessageBox.Show("Editado Correctamente!");
                     MainWindow main = new MainWindow();
-                    main.VerVideoGames();
+                    main.VerEntretenimiento();
                 }
 
 

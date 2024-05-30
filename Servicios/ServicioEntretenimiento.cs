@@ -6,12 +6,12 @@ using System.Windows;
 
 namespace Proyecto_Integrador.Servicios
 {
-    public class ServicioVideogames
+    public class ServicioEntretenimiento
     {
         public string cadenaCnx;
         private MySqlConnection conexion;
 
-        public ServicioVideogames()
+        public ServicioEntretenimiento()
         {
             cadenaCnx = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             conexion = new MySqlConnection(cadenaCnx);
@@ -57,20 +57,20 @@ namespace Proyecto_Integrador.Servicios
 
         }
 
-        public bool Insertar(Videojuegos videojuego)
+        public bool Insertar(Entretenimiento entretenimiento)
         {
             try
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO videogames (Nombre, Descripcion, Fechadeestreno, Poster, idplataforma, idgenerovid, idplataformadescarga) VALUES (@nombre, @descripcion, @fechaEstreno, @poster, @idPlataforma, @idGeneroVid, @idPlataformaDescarga)", conexion);
-                    cmd.Parameters.AddWithValue("@nombre", videojuego.Nombre);
-                    cmd.Parameters.AddWithValue("@descripcion", videojuego.Descripcion);
-                    cmd.Parameters.AddWithValue("@fechaEstreno", videojuego.FechaEstreno);
-                    cmd.Parameters.AddWithValue("@poster", videojuego.Poster);
-                    cmd.Parameters.AddWithValue("@idPlataforma", videojuego.IdPlataforma);
-                    cmd.Parameters.AddWithValue("@idGeneroVid", videojuego.IdGeneroVid);
-                    cmd.Parameters.AddWithValue("@idPlataformaDescarga", videojuego.IdPlataformaDescarga);
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO entretenimiento (Nombre, Descripcion, Fechadeestreno, Poster, idtipoentreten, idgeneroentreten, idplataformaentreten) VALUES (@nombre, @descripcion, @fechaEstreno, @poster, @idtipoentreten, @idgeneroentreten, @idplataformaentreten)", conexion);
+                    cmd.Parameters.AddWithValue("@nombre", entretenimiento.Nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", entretenimiento.Descripcion);
+                    cmd.Parameters.AddWithValue("@fechaEstreno", entretenimiento.FechaEstreno);
+                    cmd.Parameters.AddWithValue("@poster", entretenimiento.Poster);
+                    cmd.Parameters.AddWithValue("@idtipoentreten", entretenimiento.IdTipoEntreten);
+                    cmd.Parameters.AddWithValue("@idgeneroentreten", entretenimiento.IdGeneroEntreten);
+                    cmd.Parameters.AddWithValue("@idplataformaentreten", entretenimiento.IdPlataformaEntreten);
                     cmd.ExecuteNonQuery();
                     this.CerrarConexion();
                     return true;
@@ -87,21 +87,21 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public bool Actualizar(Videojuegos videojuego)
+        public bool Actualizar(Entretenimiento entretenimiento)
         {
             try
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("UPDATE videogames SET Nombre=@nombre, Descripcion=@descripcion, Fechadeestreno=@fechaEstreno, Poster=@poster, idplataforma=@idPlataforma, idgenerovid=@idGeneroVid, idplataformadescarga=@idPlataformaDescarga WHERE idgames=@id", conexion);
-                    cmd.Parameters.AddWithValue("@id", videojuego.Id);
-                    cmd.Parameters.AddWithValue("@nombre", videojuego.Nombre);
-                    cmd.Parameters.AddWithValue("@descripcion", videojuego.Descripcion);
-                    cmd.Parameters.AddWithValue("@fechaEstreno", videojuego.FechaEstreno);
-                    cmd.Parameters.AddWithValue("@poster", videojuego.Poster);
-                    cmd.Parameters.AddWithValue("@idPlataforma", videojuego.IdPlataforma);
-                    cmd.Parameters.AddWithValue("@idGeneroVid", videojuego.IdGeneroVid);
-                    cmd.Parameters.AddWithValue("@idPlataformaDescarga", videojuego.IdPlataformaDescarga);
+                    MySqlCommand cmd = new MySqlCommand("UPDATE entretenimiento SET Nombre=@nombre, Descripcion=@descripcion, Fechadeestreno=@fechaEstreno, Poster=@poster, idtipoentreten=@idtipoentreten, idgeneroentreten=@idgeneroentreten, idplataformaentreten=@idplataformaentreten WHERE identreten=@id", conexion);
+                    cmd.Parameters.AddWithValue("@id", entretenimiento.Id);
+                    cmd.Parameters.AddWithValue("@nombre", entretenimiento.Nombre);
+                    cmd.Parameters.AddWithValue("@descripcion", entretenimiento.Descripcion);
+                    cmd.Parameters.AddWithValue("@fechaEstreno", entretenimiento.FechaEstreno);
+                    cmd.Parameters.AddWithValue("@poster", entretenimiento.Poster);
+                    cmd.Parameters.AddWithValue("@idtipoentreten", entretenimiento.IdTipoEntreten);
+                    cmd.Parameters.AddWithValue("@idgeneroentreten", entretenimiento.IdGeneroEntreten);
+                    cmd.Parameters.AddWithValue("@idplataformaentreten", entretenimiento.IdPlataformaEntreten);
                     cmd.ExecuteNonQuery();
                     this.CerrarConexion();
                     return true;
@@ -124,7 +124,7 @@ namespace Proyecto_Integrador.Servicios
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("DELETE FROM videogames WHERE idgames=@id", conexion);
+                    MySqlCommand cmd = new MySqlCommand("DELETE FROM entretenimiento WHERE identreten=@id", conexion);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
                     this.CerrarConexion();
@@ -148,7 +148,7 @@ namespace Proyecto_Integrador.Servicios
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("Delete from resenasvideogames where idgames=@id", conexion);
+                    MySqlCommand cmd = new MySqlCommand("Delete from resenasentretenimiento where identreten=@id", conexion);
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteNonQuery();
                     this.CerrarConexion();
@@ -167,10 +167,10 @@ namespace Proyecto_Integrador.Servicios
 
         }
 
-        public List<Videojuegos> getVideojuegos()
+        public List<Entretenimiento> getEntretenimiento()
         {
-            string query = "SELECT * FROM videogames";
-            List<Videojuegos> videojuegos = new List<Videojuegos>();
+            string query = "SELECT * FROM entretenimiento";
+            List<Entretenimiento> entretenimientos = new List<Entretenimiento>();
 
             if (this.AbrirConexion())
             {
@@ -180,16 +180,16 @@ namespace Proyecto_Integrador.Servicios
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Videojuegos videojuego = new Videojuegos();
-                        videojuego.Id = Convert.ToInt32(dataReader["idgames"]);
-                        videojuego.Nombre = Convert.ToString(dataReader["Nombre"]);
-                        videojuego.Descripcion = Convert.ToString(dataReader["Descripcion"]);
-                        videojuego.FechaEstreno = Convert.ToDateTime(dataReader["Fechadeestreno"]);
-                        videojuego.Poster = Convert.ToString(dataReader["Poster"]);
-                        videojuego.IdPlataforma = Convert.ToInt32(dataReader["idplataforma"]);
-                        videojuego.IdGeneroVid = Convert.ToInt32(dataReader["idgenerovid"]);
-                        videojuego.IdPlataformaDescarga = Convert.ToInt32(dataReader["idplataformadescarga"]);
-                        videojuegos.Add(videojuego);
+                        Entretenimiento entretenimiento = new Entretenimiento();
+                        entretenimiento.Id = Convert.ToInt32(dataReader["identreten"]);
+                        entretenimiento.Nombre = Convert.ToString(dataReader["Nombre"]);
+                        entretenimiento.Descripcion = Convert.ToString(dataReader["Descripcion"]);
+                        entretenimiento.FechaEstreno = Convert.ToDateTime(dataReader["Fechadeestreno"]);
+                        entretenimiento.Poster = Convert.ToString(dataReader["Poster"]);
+                        entretenimiento.IdTipoEntreten = Convert.ToInt32(dataReader["idtipoentreten"]);
+                        entretenimiento.IdGeneroEntreten = Convert.ToInt32(dataReader["idgeneroentreten"]);
+                        entretenimiento.IdPlataformaEntreten = Convert.ToInt32(dataReader["idplataformaentreten"]);
+                        entretenimientos.Add(entretenimiento);
                     }
                     dataReader.Close();
                 }
@@ -205,7 +205,7 @@ namespace Proyecto_Integrador.Servicios
                     return null;
                 }
                 CerrarConexion();
-                return videojuegos;
+                return entretenimientos;
             }
             else
             {
@@ -213,10 +213,10 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public List<Videojuegos> getVideojuegosPorId(int id)
+        public List<Entretenimiento> getEntretenimientoPorId(int id)
         {
-            string query = "SELECT * FROM videogames WHERE idgames = @id";
-            List<Videojuegos> videojuegos = new List<Videojuegos>();
+            string query = "SELECT * FROM entretenimiento WHERE identreten = @id";
+            List<Entretenimiento> entretenimientos = new List<Entretenimiento>();
 
             if (this.AbrirConexion())
             {
@@ -228,18 +228,18 @@ namespace Proyecto_Integrador.Servicios
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        Videojuegos videojuego = new Videojuegos
+                        Entretenimiento entretenimiento = new Entretenimiento
                         {
-                            Id = Convert.ToInt32(dataReader["idgames"]),
+                            Id = Convert.ToInt32(dataReader["identreten"]),
                             Nombre = Convert.ToString(dataReader["Nombre"]),
                             Descripcion = Convert.ToString(dataReader["Descripcion"]),
                             FechaEstreno = Convert.ToDateTime(dataReader["Fechadeestreno"]),
                             Poster = Convert.ToString(dataReader["Poster"]),
-                            IdPlataforma = Convert.ToInt32(dataReader["idplataforma"]),
-                            IdGeneroVid = Convert.ToInt32(dataReader["idgenerovid"]),
-                            IdPlataformaDescarga = Convert.ToInt32(dataReader["idplataformadescarga"])
+                            IdTipoEntreten = Convert.ToInt32(dataReader["idtipoentreten"]),
+                            IdGeneroEntreten = Convert.ToInt32(dataReader["idgeneroentreten"]),
+                            IdPlataformaEntreten = Convert.ToInt32(dataReader["idplataformaentreten"])
                         };
-                        videojuegos.Add(videojuego);
+                        entretenimientos.Add(entretenimiento);
                     }
                     dataReader.Close();
                 }
@@ -258,7 +258,7 @@ namespace Proyecto_Integrador.Servicios
                 {
                     CerrarConexion();
                 }
-                return videojuegos;
+                return entretenimientos;
             }
             else
             {
@@ -266,21 +266,21 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public ResenaVideoGame UltimaResena(int idGame)
+        public ResenaEntretenimiento UltimaResena(int idEntreten)
         {
-            ResenaVideoGame resena = null; // Inicializar como null para verificar si se encontró una reseña
+            ResenaEntretenimiento resena = null; // Inicializar como null para verificar si se encontró una reseña
             try
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("SELECT alias, calificacion FROM resenasvideogames WHERE idgames= @id_game ORDER BY idresenasvideogames DESC LIMIT 1", conexion);
-                    cmd.Parameters.AddWithValue("@id_game", idGame);
+                    MySqlCommand cmd = new MySqlCommand("SELECT alias, calificacion FROM resenasentretenimiento WHERE identreten= @identreten ORDER BY idresenasentreten DESC LIMIT 1", conexion);
+                    cmd.Parameters.AddWithValue("@identreten", idEntreten);
 
                     MySqlDataReader dataReader = cmd.ExecuteReader();
 
                     if (dataReader.Read())
                     {
-                        resena = new ResenaVideoGame();
+                        resena = new ResenaEntretenimiento();
                         resena.Alias = dataReader["alias"].ToString();
                         resena.Calificacion = Convert.ToDouble(dataReader["calificacion"]);
                     }
@@ -303,8 +303,8 @@ namespace Proyecto_Integrador.Servicios
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("SELECT ROUND(AVG(calificacion), 1) AS PromedioResenas FROM resenasvideogames WHERE idgames = @id_game", conexion);
-                    cmd.Parameters.AddWithValue("@id_game", idGame);
+                    MySqlCommand cmd = new MySqlCommand("SELECT ROUND(AVG(calificacion), 1) AS PromedioResenas FROM resenasentretenimiento WHERE identreten = @identreten", conexion);
+                    cmd.Parameters.AddWithValue("@identreten", idGame);
 
                     object result = cmd.ExecuteScalar();
                     this.CerrarConexion();
@@ -332,7 +332,7 @@ namespace Proyecto_Integrador.Servicios
 
         public string getGenero(int tipoid)
         {
-            string query = $"SELECT nombre FROM generovideojuego where idGeneroVid = {tipoid}";
+            string query = $"SELECT nombre FROM generoentreten where idGeneroEntreten = {tipoid}";
 
             string tipolugar;
             if (this.AbrirConexion())
@@ -369,7 +369,7 @@ namespace Proyecto_Integrador.Servicios
 
         public string getPlataforma(int platid)
         {
-            string query = $"SELECT nombre FROM plataformas where idPlataforma = {platid}";
+            string query = $"SELECT nombre FROM plataformaentreten where idplataformaentreten = {platid}";
 
             string tipolugar;
             if (this.AbrirConexion())
@@ -404,9 +404,9 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public string getDescarga(int descId)
+        public string getTipo(int tipoId)
         {
-            string query = $"SELECT nombre FROM plataformadescarga where idPlataformaDescarga = {descId}";
+            string query = $"SELECT nombre FROM tipoentreten where idtipoEntreten = {tipoId}";
 
             string tipolugar;
             if (this.AbrirConexion())
@@ -441,17 +441,17 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
-        public bool InsertarResenaVideogame(ResenaVideoGame resenas)
+        public bool InsertarResenaEntretenimiento(ResenaEntretenimiento resenas)
         {
             try
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO resenasvideogames (calificacion,textoresena,alias,idgames) VALUES (@calificacion,@texto,@alias,@idgames)", conexion);
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO resenasentretenimiento (calificacion,textoresena,alias,identreten) VALUES (@calificacion,@texto,@alias,@identreten)", conexion);
                     cmd.Parameters.AddWithValue("@calificacion", resenas.Calificacion);
                     cmd.Parameters.AddWithValue("@texto", resenas.Texto);
                     cmd.Parameters.AddWithValue("@alias", resenas.Alias);
-                    cmd.Parameters.AddWithValue("@idgames", resenas.IdGame);
+                    cmd.Parameters.AddWithValue("@identreten", resenas.IdEntreten);
                     cmd.ExecuteNonQuery();
                     this.CerrarConexion();
                     return true;
@@ -470,7 +470,7 @@ namespace Proyecto_Integrador.Servicios
 
         public List<string> MostrarGenero()
         {
-            string query = "SELECT nombre FROM generovideojuego";
+            string query = "SELECT nombre FROM generoentreten";
             List<string> tipolugares = new List<string>();
 
             if (this.AbrirConexion())
@@ -509,7 +509,7 @@ namespace Proyecto_Integrador.Servicios
 
         public List<string> MostrarPlataforma()
         {
-            string query = "SELECT nombre FROM plataformas";
+            string query = "SELECT nombre FROM plataformaentreten";
             List<string> tipolugares = new List<string>();
 
             if (this.AbrirConexion())
@@ -546,9 +546,9 @@ namespace Proyecto_Integrador.Servicios
             return tipolugares;
         }
 
-        public List<string> MostrarDescarga()
+        public List<string> MostrarTipo()
         {
-            string query = "SELECT nombre FROM plataformadescarga";
+            string query = "SELECT nombre FROM tipoentreten";
             List<string> tipolugares = new List<string>();
 
             if (this.AbrirConexion())
@@ -585,25 +585,25 @@ namespace Proyecto_Integrador.Servicios
             return tipolugares;
         }
 
-        public List<ResenaVideoGame> MostrarResenas(int idGame)
+        public List<ResenaEntretenimiento> MostrarResenas(int idEntreten)
         {
-            List<ResenaVideoGame> resenas = new List<ResenaVideoGame>();
+            List<ResenaEntretenimiento> resenas = new List<ResenaEntretenimiento>();
 
             if (this.AbrirConexion())
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenasvideogames where idgames = @idlugar", conexion);
-                cmd.Parameters.AddWithValue("@idlugar", idGame);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenasentretenimiento where identreten = @identreten", conexion);
+                cmd.Parameters.AddWithValue("@identreten", idEntreten);
                 try
                 {
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        ResenaVideoGame resena = new ResenaVideoGame();
-                        resena.IdResenaVideoGames = Convert.ToInt32(dataReader["IdResenasvideogames"]);
+                        ResenaEntretenimiento resena = new ResenaEntretenimiento();
+                        resena.Id = Convert.ToInt32(dataReader["idresenasentreten"]);
                         resena.Calificacion = Convert.ToDouble(dataReader["Calificacion"]);
                         resena.Texto = Convert.ToString(dataReader["textoresena"]);
                         resena.Alias = Convert.ToString(dataReader["alias"]);
-                        resena.IdGame = Convert.ToInt16(dataReader["idgames"]);
+                        resena.IdEntreten = Convert.ToInt16(dataReader["identreten"]);
                         resenas.Add(resena);
                     }
                     dataReader.Close();
@@ -634,7 +634,7 @@ namespace Proyecto_Integrador.Servicios
             {
                 if (this.AbrirConexion())
                 {
-                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM resenasvideogames WHERE Alias=@alias and idgames=@id LIMIT 1", conexion);
+                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM resenasentretenimiento WHERE Alias=@alias and identreten=@id LIMIT 1", conexion);
                     cmd.Parameters.AddWithValue("@alias", alias);
                     cmd.Parameters.AddWithValue("@id", id);
 

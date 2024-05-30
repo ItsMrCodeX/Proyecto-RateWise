@@ -25,9 +25,7 @@ namespace Proyecto_Integrador.Vistas
             idDelLugar = lugar;
             VaciarGlobalesResenas();
             CargarInfo(lugar);
-            if (VerificarPermisos())
-                MessageBox.Show($"Hola Administrador: {Global.UsuarioActual}");
-
+            VerificarPermisos();
 
         }
 
@@ -137,6 +135,15 @@ namespace Proyecto_Integrador.Vistas
             }
             return true;
         }
+        public bool VerificarResena()
+        {
+            ServiciosLugar verificador = new ServiciosLugar();
+            if (verificador.VerificarResenaPrevia(Global.UsuarioActual, idDelLugar))
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void verenmapa_Click(object sender, RoutedEventArgs e)
         {
@@ -210,18 +217,26 @@ namespace Proyecto_Integrador.Vistas
 
         private void btnresenar_Click(object sender, RoutedEventArgs e)
         {
-            if (VerificarUsuario() == true)
+            if (VerificarResena())
             {
-                MainWindow main = new MainWindow();
-                main.ResenarLugar(Convert.ToInt16(idLugar.Content), txtNombre.Text);
+                if (VerificarUsuario() == true)
+                {
+                    MainWindow main = new MainWindow();
+                    main.ResenarLugar(Convert.ToInt16(idLugar.Content), txtNombre.Text);
+                }
+                else if (VerificarUsuario() == false)
+                {
+                    MainWindow main = new MainWindow();
+                    Global.TipoResenar = 1;
+                    Global.IdAResenar = idDelLugar;
+                    main.IrAIniciar();
+                }
             }
-            else if (VerificarUsuario() == false)
+            else
             {
-                MainWindow main = new MainWindow();
-                Global.TipoResenar = 1;
-                Global.IdAResenar = idDelLugar;
-                main.IrAIniciar();
+                MessageBox.Show("Ya has reseñado este lugar");
             }
+
         }
 
     }

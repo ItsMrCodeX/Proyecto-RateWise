@@ -1,21 +1,25 @@
-﻿namespace Proyecto_Integrador.Modelos
+﻿using System.Windows.Media.Imaging;
+
+namespace Proyecto_Integrador.Modelos
 {
     public class Entretenimiento
     {
-        private int Id;
-        private string Nombre;
-        private string Descripcion;
-        private int FechaEstreno;
-        private string Poster;
-        private int IdTipoEntreten;
-        private int IdGeneroEntreten;
-        private int IdPlataformaEntreten;
+        private int id;
+        private string nombre;
+        private string descripcion;
+        private DateTime fechaEstreno;
+        private string poster;
+        private int idTipoEntreten;
+        private int idGeneroEntreten;
+        private int idPlataformaEntreten;
+        private BitmapImage imagen;
 
         public Entretenimiento()
         {
+
         }
 
-        public Entretenimiento(int id, string nombre, string descripcion, int fechaEstreno, string poster, int idTipoEntreten, int idGeneroEntreten, int idPlataformaEntreten)
+        public Entretenimiento(int id, string nombre, string descripcion, DateTime fechaEstreno, string poster, int idTipoEntreten, int idGeneroEntreten, int idPlataformaEntreten)
         {
             Id = id;
             Nombre = nombre;
@@ -26,6 +30,16 @@
             IdGeneroEntreten = idGeneroEntreten;
             IdPlataformaEntreten = idPlataformaEntreten;
         }
+
+        public int Id { get => id; set => id = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public DateTime FechaEstreno { get => fechaEstreno; set => fechaEstreno = value; }
+        public string Poster { get => poster; set => poster = value; }
+        public int IdTipoEntreten { get => idTipoEntreten; set => idTipoEntreten = value; }
+        public int IdGeneroEntreten { get => idGeneroEntreten; set => idGeneroEntreten = value; }
+        public int IdPlataformaEntreten { get => idPlataformaEntreten; set => idPlataformaEntreten = value; }
+        public BitmapImage Imagen { get => imagen; set => imagen = value; }
     }
 
 }

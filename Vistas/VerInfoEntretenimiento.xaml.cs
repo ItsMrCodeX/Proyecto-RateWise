@@ -11,34 +11,30 @@ using System.Windows.Media.Imaging;
 namespace Proyecto_Integrador.Vistas
 {
     /// <summary>
-    /// Lógica de interacción para VerInfoGame.xaml
+    /// Lógica de interacción para VerInfoEntretenimiento.xaml
     /// </summary>
-    public partial class VerInfoGame : UserControl
+    public partial class VerInfoEntretenimiento : UserControl
     {
-        private ServicioVideogames controlGames;
+        private ServicioEntretenimiento controlEntreten;
         public Videojuegos Juego { get; set; }
         public int idDelJuego;
-        public VerInfoGame(int idDelGame)
+        public VerInfoEntretenimiento(int idDelEntreten)
         {
             InitializeComponent();
             VerificarPermisos();
-            idDelJuego = idDelGame;
+            idDelJuego = idDelEntreten;
             VaciarGlobalesResenas();
-            CargarInfo(idDelGame);
-
-
-
+            CargarInfo(idDelEntreten);
         }
-
-        public void CargarInfo(int juego)
+        public void CargarInfo(int entreten)
         {
-            controlGames = new ServicioVideogames();
-            List<Videojuegos> videojuegos = controlGames.getVideojuegosPorId(juego);
+            controlEntreten = new ServicioEntretenimiento();
+            List<Entretenimiento> entretenimientos = controlEntreten.getEntretenimientoPorId(entreten);
 
-            idJuego.Content = juego;
+            idJuego.Content = entreten;
 
-            ResenaVideoGame ultima = controlGames.UltimaResena(juego);
-            double prom = controlGames.ObtenerPromedioResenas(juego);
+            ResenaEntretenimiento ultima = controlEntreten.UltimaResena(entreten);
+            double prom = controlEntreten.ObtenerPromedioResenas(entreten);
             txbCalPromedio.Text = prom.ToString();
 
             if (ultima == null || string.IsNullOrEmpty(ultima.Alias))
@@ -61,21 +57,21 @@ namespace Proyecto_Integrador.Vistas
                 fotoperfil.Source = bit;
             }
 
-            if (videojuegos.Count > 0)
+            if (entretenimientos.Count > 0)
             {
-                Videojuegos game = videojuegos[0];
-                txtTitulo.Text = game.Nombre;
-                txbDescripcion.Text = game.Descripcion;
-                txtGenero.Content = controlGames.getGenero(game.IdGeneroVid);
-                txtPlataforama.Content = controlGames.getPlataforma(game.IdPlataforma);
-                txtDescarga.Content = controlGames.getDescarga(game.IdPlataformaDescarga);
-                txtFecha.Text = game.FechaEstreno.ToString();
+                Entretenimiento entretenimiento = entretenimientos[0];
+                txtTitulo.Text = entretenimiento.Nombre;
+                txbDescripcion.Text = entretenimiento.Descripcion;
+                txtGenero.Content = controlEntreten.getGenero(entretenimiento.IdGeneroEntreten);
+                txtPlataforama.Content = controlEntreten.getPlataforma(entretenimiento.IdPlataformaEntreten);
+                txtTipo.Content = controlEntreten.getTipo(entretenimiento.IdTipoEntreten);
+                txtFecha.Text = entretenimiento.FechaEstreno.ToString();
 
                 try
                 {
 
                     var imageBrush = BordeImagenLugar.Background as ImageBrush;
-                    string base64String = game.Poster;
+                    string base64String = entretenimiento.Poster;
 
                     byte[] binaryData = Convert.FromBase64String(base64String);
 
@@ -98,7 +94,7 @@ namespace Proyecto_Integrador.Vistas
                 }
             }
 
-            DataContext = videojuegos;
+            DataContext = entretenimientos;
         }
         public bool VerificarUsuario()
         {
@@ -132,7 +128,7 @@ namespace Proyecto_Integrador.Vistas
 
         public bool VerificarResena()
         {
-            ServicioVideogames verificador = new ServicioVideogames();
+            ServicioEntretenimiento verificador = new ServicioEntretenimiento();
             if (verificador.VerificarResenaPrevia(Global.UsuarioActual, idDelJuego))
             {
                 return true;
@@ -153,12 +149,13 @@ namespace Proyecto_Integrador.Vistas
                 if (VerificarUsuario() == true)
                 {
                     MainWindow main = new MainWindow();
-                    main.ResenarGame(Convert.ToInt16(idJuego.Content), txtTitulo.Text);
+                    // Cambiar esto
+                    main.ResenarEntretenimiento(Convert.ToInt16(idJuego.Content), txtTitulo.Text);
                 }
                 else if (VerificarUsuario() == false)
                 {
                     MainWindow main = new MainWindow();
-                    Global.TipoResenar = 2;
+                    Global.TipoResenar = 3;
                     Global.IdAResenar = idDelJuego;
                     main.IrAIniciar();
                 }
@@ -170,20 +167,16 @@ namespace Proyecto_Integrador.Vistas
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void BorrarCnPermiso_Click_1(object sender, RoutedEventArgs e)
         {
             if (VerificarPermisos())
             {
-                if (controlGames.Borrar(idDelJuego))
+                if (controlEntreten.Borrar(idDelJuego))
                 {
                     MessageBox.Show("Borrado Con Exito!");
                     MainWindow main = new MainWindow();
-                    main.VerVideoGames();
+                    main.VerEntretenimiento();
                 }
                 else
                 {
@@ -204,7 +197,7 @@ namespace Proyecto_Integrador.Vistas
         {
             if (VerificarPermisos())
             {
-                if (controlGames.BorrarResenas(idDelJuego))
+                if (controlEntreten.BorrarResenas(idDelJuego))
                 {
                     MessageBox.Show("Reseñas Borradas Con Exito!");
 
@@ -220,20 +213,20 @@ namespace Proyecto_Integrador.Vistas
             {
                 MessageBox.Show("Como es que ves esto?");
                 MainWindow main = new MainWindow();
-                main.AbrirVerInfoLugar(idDelJuego);
+                main.AbrirVerEntretenimiento(idDelJuego);
             }
         }
 
         private void ActualizarCnPermiso_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
-            main.ActualizarJuego(idDelJuego);
+            main.ActualizarEntretenimiento(idDelJuego);
         }
 
         private void verResenasGame_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.VerResenasVideojuego(idDelJuego);
+            mainWindow.VerResenasEntretenimiento(idDelJuego);
         }
     }
 }

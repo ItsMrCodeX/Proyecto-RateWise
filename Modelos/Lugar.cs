@@ -16,6 +16,7 @@ namespace Proyecto_Integrador.Modelos
         private int idRegion;
         private BitmapImage imagen;
 
+
         public Lugar()
         {
         }

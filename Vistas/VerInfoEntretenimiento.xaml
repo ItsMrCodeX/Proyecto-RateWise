@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="Proyecto_Integrador.Vistas.VerInfoGame"
+﻿<UserControl x:Class="Proyecto_Integrador.Vistas.VerInfoEntretenimiento"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Proyecto_Integrador.Vistas"
              mc:Ignorable="d" 
-             xmlns:ui="http://schemas.modernwpf.com/2019"
+                          xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:fa="http://schemas.fontawesome.io/icons/" d:DesignWidth="1370" Height="875">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
@@ -102,15 +102,15 @@ CornerRadius="10">
                 <TextBlock x:Name="txtTitulo" Text="Titulo Aqui" FontSize="90" TextWrapping="Wrap"/>
                 <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,20,0">
-                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Genero" FontSize="50" Background="#e1ad01" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
-                        <Label Name="txtGenero" Width="250" Content="Example" HorizontalContentAlignment="Center" FontSize="45" Margin="0,25,0,0"/>
+                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Tipo" FontSize="50" Background="#e1ad01" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
+                        <Label Name="txtTipo" Width="250" Content="Example" HorizontalContentAlignment="Center" FontSize="45" Margin="0,25,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,20,0">
-                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Plataforma" FontSize="45" Background="#7B31ED" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
-                        <Label x:Name="txtDescarga" Width="250" Content="Example" HorizontalContentAlignment="Center" FontSize="45" Margin="0,25,0,0"/>
+                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Genero" FontSize="45" Background="#7B31ED" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
+                        <Label x:Name="txtGenero" Width="250" Content="Example" HorizontalContentAlignment="Center" FontSize="45" Margin="0,25,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Disponible" FontSize="45" Background="#1FDBAE" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
+                        <TextBox Width="240" TextAlignment="Center" IsEnabled="False" Text="Plataforma" FontSize="45" Background="#1FDBAE" Foreground="White" Style="{StaticResource TextBoxStyle}"/>
                         <Label x:Name="txtPlataforama" Width="250" Content="Example" HorizontalContentAlignment="Center" FontSize="45" Margin="0,25,0,0"/>
                     </StackPanel>
                 </StackPanel>
@@ -181,5 +181,4 @@ CornerRadius="10">
 
         <Label Name="idJuego" Foreground="Transparent" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
     </Grid>
-
 </UserControl>

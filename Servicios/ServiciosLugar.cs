@@ -147,6 +147,7 @@ namespace Proyecto_Integrador.Servicios
             }
 
         }
+
         public bool BorrarResenas(int id)
         {
             try
@@ -367,6 +368,7 @@ namespace Proyecto_Integrador.Servicios
                 return false;
             }
         }
+
         public double ObtenerPromedioResenas(int idLugar)
         {
             try
@@ -616,5 +618,118 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public bool VerificarResenaPrevia(string alias, int id)
+        {
+            try
+            {
+                if (this.AbrirConexion())
+                {
+                    MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM resenaslugares WHERE Alias=@alias and idlugares=@id LIMIT 1", conexion);
+                    cmd.Parameters.AddWithValue("@alias", alias);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    this.CerrarConexion();
+
+                    return count == 0;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return true;
+            }
+        }
+
+        public List<ResenaLugares> MostrarResenasLugarUsuario(string alias)
+        {
+            List<ResenaLugares> resenas = new List<ResenaLugares>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenaslugares where alias = @alias", conexion);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue("@alias", alias);
+
+                    while (dataReader.Read())
+                    {
+                        ResenaLugares resena = new ResenaLugares();
+                        resena.IdResenaLugares = Convert.ToInt32(dataReader["IdResenasLugares"]);
+                        resena.Calificacion = Convert.ToDouble(dataReader["Calificacion"]);
+                        resena.Texto = Convert.ToString(dataReader["textoresena"]);
+                        resena.Alias = Convert.ToString(dataReader["alias"]);
+                        resena.IdLugar = Convert.ToInt16(dataReader["IdLugares"]);
+                        resenas.Add(resena);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show("M1: "+ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show("M2: " + ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+                CerrarConexion();
+                return resenas;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<ResenaLugares> MostrarResenasPorUsuario(string nomUsuario)
+        {
+            List<ResenaLugares> resenas = new List<ResenaLugares>();
+
+            if (this.AbrirConexion())
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM resenaslugares where alias = @nomuser", conexion);
+                cmd.Parameters.AddWithValue("@nomuser", nomUsuario);
+                try
+                {
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        ResenaLugares resena = new ResenaLugares();
+                        resena.IdResenaLugares = Convert.ToInt32(dataReader["IdResenasLugares"]);
+                        resena.Calificacion = Convert.ToDouble(dataReader["Calificacion"]);
+                        resena.Texto = Convert.ToString(dataReader["textoresena"]);
+                        resena.Alias = Convert.ToString(dataReader["alias"]);
+                        resena.IdLugar = Convert.ToInt16(dataReader["IdLugares"]);
+                        resenas.Add(resena);
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    return null;
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.StackTrace);
+                    MessageBox.Show(ex2.Message);
+                    return null;
+                }
+                CerrarConexion();
+                return resenas;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

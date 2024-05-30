@@ -137,7 +137,7 @@ CornerRadius="10">
     <Grid>
         <ui:SimpleStackPanel>
             <ui:SimpleStackPanel>
-                <Label Content="Editar Videojuego!" Margin="30,30,0,0" FontSize="50" Width="auto" Height="70" VerticalAlignment="Top"/>
+                <Label Content="Nuevo Videojuego!" Margin="30,30,0,0" FontSize="50" Width="auto" Height="70" VerticalAlignment="Top"/>
                 <Label Content="Información" Margin="30,0,0,0" FontSize="30" Width="auto" Height="35" VerticalAlignment="Top" Foreground="Gray"/>
             </ui:SimpleStackPanel>
 
@@ -166,12 +166,12 @@ CornerRadius="10">
                         <DatePicker Name="DateEstreno"  Width="280" Height="40" Margin="0,0,40,0"/>
                     </ui:SimpleStackPanel>
                     <ui:SimpleStackPanel Orientation="Horizontal" Margin="30,10,30,0">
-                        
+
                         <ui:SimpleStackPanel>
                             <TextBlock Text="Plataforma Principal" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Visible" FontSize="18"/>
                             <ComboBox Name="cmbPlataforma"  Width="280" Height="40" Margin="0,0,40,0"/>
                         </ui:SimpleStackPanel>
-                        
+
 
                     </ui:SimpleStackPanel>
                     <ui:SimpleStackPanel Margin="30,10,30,0">
@@ -182,9 +182,9 @@ CornerRadius="10">
                         <TextBlock Text="Plataforma de Descarga" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Visible" FontSize="18"/>
                         <ComboBox Name="cmbDescarga" Width="280" Height="40" Margin="0,0,40,0"/>
                     </ui:SimpleStackPanel>
-                    
+
                 </ui:SimpleStackPanel>
-                
+
             </ui:SimpleStackPanel>
 
         </ui:SimpleStackPanel>
@@ -196,7 +196,7 @@ CornerRadius="10">
 
         <Button Style="{StaticResource ButtonStylePrimary}" Height="50" Width="450" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="30" x:Name="btnagregargame" Click="btnagregargame_Click" >
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Actualizar Videojuego" FontSize="26"/>
+                <TextBlock Text="Agregar Videojuego" FontSize="26"/>
             </StackPanel>
         </Button>
     </Grid>

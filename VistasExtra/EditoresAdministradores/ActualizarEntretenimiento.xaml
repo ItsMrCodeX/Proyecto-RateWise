@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Proyecto_Integrador.VistasExtra.EditoresAdministradores.ActualizarVideojuego"
+﻿<UserControl x:Class="Proyecto_Integrador.VistasExtra.EditoresAdministradores.ActualizarEntretenimiento"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -134,11 +134,11 @@ CornerRadius="10">
             </Setter>
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
         <ui:SimpleStackPanel>
             <ui:SimpleStackPanel>
-                <Label Content="Editar Videojuego!" Margin="30,30,0,0" FontSize="50" Width="auto" Height="70" VerticalAlignment="Top"/>
+                <Label Content="Editar Entretenimiento!" Margin="30,30,0,0" FontSize="50" Width="auto" Height="70" VerticalAlignment="Top"/>
                 <Label Content="Información" Margin="30,0,0,0" FontSize="30" Width="auto" Height="35" VerticalAlignment="Top" Foreground="Gray"/>
             </ui:SimpleStackPanel>
 
@@ -147,12 +147,12 @@ CornerRadius="10">
 
                     <Border CornerRadius="10" Height="240" MaxHeight="240" Width="600" Margin="369,10,-309,50" x:Name="awfawfawf">
                         <Border.Background>
-                            <ImageBrush Stretch="UniformToFill" x:Name="ImagenLugar" ImageSource="/VistasExtra/gameplaceholder.png"/>
+                            <ImageBrush Stretch="UniformToFill" x:Name="ImagenLugar" ImageSource="/VistasExtra/EditoresAdministradores/entretenimientoadd.jpg" />
                         </Border.Background>
                     </Border>
 
                     <StackPanel Orientation="Vertical" Margin="30,10">
-                        <TextBlock Text="Nombre del Videojuego" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
+                        <TextBlock Text="Nombre" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"  Visibility="Visible" FontSize="18"/>
                         <TextBox Name="txbNombre" Width="400" Height="40" Padding="10" FontSize="13" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="30,10">
@@ -180,8 +180,8 @@ CornerRadius="10">
                         <ComboBox Name="cmbGenero" Width="280" Height="40" Margin="0,0,40,0"/>
                     </ui:SimpleStackPanel>
                     <ui:SimpleStackPanel Margin="30,10,30,0">
-                        <TextBlock Text="Plataforma de Descarga" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Visible" FontSize="18"/>
-                        <ComboBox Name="cmbDescarga" Width="280" Height="40" Margin="0,0,40,0"/>
+                        <TextBlock Text="Tipo de Entretenimiento" Foreground="Gray" Margin="0,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" Visibility="Visible" FontSize="18"/>
+                        <ComboBox Name="cmbTipo" Width="280" Height="40" Margin="0,0,40,0"/>
                     </ui:SimpleStackPanel>
 
                 </ui:SimpleStackPanel>
@@ -197,7 +197,7 @@ CornerRadius="10">
 
         <Button Style="{StaticResource ButtonStylePrimary}" Height="50" Width="450" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="30" x:Name="btnagregargame" Click="btnagregargame_Click" >
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Actualizar Videojuego" FontSize="26"/>
+                <TextBlock Text="Actualizar" FontSize="26"/>
             </StackPanel>
         </Button>
     </Grid>

@@ -11,7 +11,7 @@
     <Grid>
         <Border CornerRadius="10" Height="670" MaxHeight="670" Margin="30" x:Name="BordeImagenLugar">
             <Border.Background>
-                <ImageBrush Stretch="UniformToFill" x:Name="imagenLugar" ImageSource="/Vistas/PlaceholderMapa.png"/>
+                <ImageBrush Stretch="Fill" x:Name="imagenLugar" ImageSource="/inicial.png" />
             </Border.Background>
         </Border>
         

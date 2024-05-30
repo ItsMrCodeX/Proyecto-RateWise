@@ -18,7 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="inicial.png" />
     <None Remove="Resenas\vacia.png" />
+    <None Remove="VistasExtra\EditoresAdministradores\entretenimientoadd.jpg" />
+    <None Remove="VistasExtra\entretenimientoadd.jpg" />
     <None Remove="VistasExtra\gameplaceholder.png" />
     <None Remove="VistasExtra\Inicio.png" />
     <None Remove="VistasExtra\mapplaceholder.jpg" />
@@ -37,7 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="inicial.png" />
     <Resource Include="Resenas\vacia.png" />
+    <Resource Include="VistasExtra\EditoresAdministradores\entretenimientoadd.jpg" />
+    <Resource Include="VistasExtra\entretenimientoadd.jpg" />
     <Resource Include="VistasExtra\gameplaceholder.png" />
     <Resource Include="VistasExtra\Inicio.png" />
     <Resource Include="VistasExtra\mapplaceholder.jpg" />
