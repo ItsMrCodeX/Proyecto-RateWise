@@ -92,8 +92,14 @@ namespace Proyecto_Integrador.VistasExtra
                 if (res)
                 {
                     MessageBox.Show("Usuario Guardado Correctamente");
-                    InfoUsuario mainWindow = new InfoUsuario();
-                    mainWindow.cargarInformacion();
+                    stckbtnVerResenas.IsEnabled = true;
+                    stckbtnGuardar.IsEnabled = false;
+                    stckLeft.IsEnabled = false;
+                    stckRight.IsEnabled = false;
+                    stckbtnVerResenas.IsEnabled = true;
+                    AgregarImagen.Visibility = Visibility.Collapsed;
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.VerInfoUsuario();
                 }
             }
             else
@@ -116,6 +122,12 @@ namespace Proyecto_Integrador.VistasExtra
                     if (res)
                     {
                         MessageBox.Show("Usuario Guardado Correctamente");
+                        stckbtnVerResenas.IsEnabled = true;
+                        stckbtnGuardar.IsEnabled = false;
+                        stckLeft.IsEnabled = false;
+                        stckRight.IsEnabled = false;
+                        stckbtnVerResenas.IsEnabled = true;
+                        AgregarImagen.Visibility = Visibility.Collapsed;
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.VerInfoUsuario();
                     }
@@ -160,8 +172,8 @@ namespace Proyecto_Integrador.VistasExtra
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             Global.UsuarioActual = "";
-            Global.TipoResenar = -1;
-            Global.IdAResenar = -1;
+            Global.TipoResenar = 0;
+            Global.IdAResenar = 0;
             MessageBox.Show("Sesion Cerrada");
             MainWindow main = new MainWindow();
             main.ActualizaUsuario();

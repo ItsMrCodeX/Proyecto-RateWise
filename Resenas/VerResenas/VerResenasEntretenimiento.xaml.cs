@@ -17,9 +17,11 @@ namespace Proyecto_Integrador.Resenas.VerResenas
         public List<ResenaEntretenimiento> Entretenimientos { get; set; }
 
         private ServicioEntretenimiento controlEntretenimiento;
+        int IdDelEntretenimiento;
         public VerResenasEntretenimiento(int idEntreten)
         {
             InitializeComponent();
+            IdDelEntretenimiento = idEntreten;
             controlEntretenimiento = new ServicioEntretenimiento();
             List<ResenaEntretenimiento> resenas = controlEntretenimiento.MostrarResenas(idEntreten);
             ServicioUsuarios resenado = new ServicioUsuarios();
@@ -59,6 +61,12 @@ namespace Proyecto_Integrador.Resenas.VerResenas
             }
 
             MiListBox.ItemsSource = resenas;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.AbrirVerEntretenimiento(IdDelEntretenimiento);
         }
     }
 }

@@ -14,7 +14,7 @@
 
 
             <StackPanel Orientation="Vertical">
-                <Button fa:Awesome.Content="Backward" Style="{StaticResource AccentButtonStyle}" FontSize="35" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="50" Click="Button_Click"/>
+                <Button fa:Awesome.Content="RotateLeft" Style="{StaticResource AccentButtonStyle}" FontSize="35" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="50" Click="Button_Click"/>
                 <Grid Height="10"/>
                 <StackPanel>
                     <Label Content="Lugares"  FontSize="25"/>

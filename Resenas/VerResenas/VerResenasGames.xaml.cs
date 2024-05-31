@@ -16,9 +16,11 @@ namespace Proyecto_Integrador.Resenas.VerResenas
         public List<ResenaVideoGame> Games { get; set; }
 
         private ServicioVideogames controlJuegos;
+        int IdDelGame;
         public VerResenasGames(int gameId)
         {
             InitializeComponent();
+            IdDelGame = gameId;
             controlJuegos = new ServicioVideogames();
             List<ResenaVideoGame> resenas = controlJuegos.MostrarResenas(gameId);
             ServicioUsuarios resenado = new ServicioUsuarios();
@@ -58,6 +60,12 @@ namespace Proyecto_Integrador.Resenas.VerResenas
             }
 
             MiListBox.ItemsSource = resenas;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.AbrirVerInfoJuego(IdDelGame);
         }
     }
 }

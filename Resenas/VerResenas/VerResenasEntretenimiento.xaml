@@ -12,6 +12,8 @@
     <Grid x:Name="LayoutRoot" Margin="20">
 
         <Grid Height="10"/>
+        <Button fa:Awesome.Content="RotateLeft" Style="{StaticResource AccentButtonStyle}" FontSize="35" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="50" Click="Button_Click_1" />
+
         <ScrollViewer HorizontalAlignment="Center" Width="1330" Margin="0,130,0,-130">
             <ui:SimpleStackPanel>
                 <ListBox x:Name="MiListBox" Margin="25,25,6,25" ItemsSource="{Binding Resenas}" >

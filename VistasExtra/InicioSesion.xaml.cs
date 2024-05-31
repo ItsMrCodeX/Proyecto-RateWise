@@ -38,7 +38,9 @@ namespace Proyecto_Integrador.VistasExtra
                 {
 
                     MessageBox.Show("Sesion Iniciada");
-                    if (Global.IdAResenar == null || Global.IdAResenar == 0 || Global.TipoResenar == null || Global.TipoResenar == 0)
+                    Global.TipoResenar = 0;
+                    Global.IdAResenar = 0;
+                    if (Global.IdAResenar == null || Global.IdAResenar == 0 || Global.TipoResenar == null || Global.TipoResenar == 0 )
                     {
                         Global.UsuarioActual = txtUsuario.Text;
                         MainWindow mainWindow = new MainWindow();

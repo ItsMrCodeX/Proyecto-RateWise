@@ -17,7 +17,7 @@ namespace Proyecto_Integrador
         public MainWindow()
         {
             InitializeComponent();
-            Global.UsuarioActual = "ItsMrCodeX";
+            //Global.UsuarioActual = "ItsMrCodeX";
             lblUsuarioActual.Content = Global.UsuarioActual;
             Cnt_main.Content = new Inicial();
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;

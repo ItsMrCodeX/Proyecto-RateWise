@@ -17,9 +17,11 @@ namespace Proyecto_Integrador.Resenas.VerResenas
         public MainWindow Main { get; set; }
 
         private ServiciosLugar controlLugares;
+        int idDelLugar;
         public VerResenasLugares(int lugarid)
         {
             InitializeComponent();
+            idDelLugar = lugarid;
             controlLugares = new ServiciosLugar();
             List<ResenaLugares> resenas = controlLugares.MostrarResenas(lugarid);
             ServicioUsuarios resenado = new ServicioUsuarios();
@@ -68,6 +70,12 @@ namespace Proyecto_Integrador.Resenas.VerResenas
         {
             MainWindow main = new MainWindow();
             main.RegistrarLugare();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.AbrirVerInfoLugar(idDelLugar);
         }
     }
 }
