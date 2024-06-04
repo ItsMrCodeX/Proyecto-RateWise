@@ -15,6 +15,8 @@ namespace Proyecto_Integrador.Modelos
         private int idTipoLugar;
         private int idRegion;
         private BitmapImage imagen;
+        private double? calificacion;
+        private List<string> estrellas;
 
 
         public Lugar()
@@ -46,5 +48,7 @@ namespace Proyecto_Integrador.Modelos
         public int IdRegion { get => idRegion; set => idRegion = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public BitmapImage Imagen { get => imagen; set => imagen = value; }
+        public List<string> Estrellas { get => estrellas; set => estrellas = value; }
+        public double? Calificacion { get => calificacion; set => calificacion = value; }
     }
 }

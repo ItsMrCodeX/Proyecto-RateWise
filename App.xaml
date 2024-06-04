@@ -9,10 +9,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
+
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="FontAwesome">
-                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/Fonts/#FontAwesome" />
-            </Style>
+
+            <FontFamily x:Key="FontAwesome">/Fuentes/Font Awesome 6 Free Solid.otf#Font Awesome 6 Free Solid</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

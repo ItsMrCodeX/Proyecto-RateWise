@@ -13,6 +13,8 @@ namespace Proyecto_Integrador.Modelos
         private int idGeneroEntreten;
         private int idPlataformaEntreten;
         private BitmapImage imagen;
+        private double? calificacion;
+        private List<string> estrellas;
 
         public Entretenimiento()
         {
@@ -40,6 +42,8 @@ namespace Proyecto_Integrador.Modelos
         public int IdGeneroEntreten { get => idGeneroEntreten; set => idGeneroEntreten = value; }
         public int IdPlataformaEntreten { get => idPlataformaEntreten; set => idPlataformaEntreten = value; }
         public BitmapImage Imagen { get => imagen; set => imagen = value; }
+        public double? Calificacion { get => calificacion; set => calificacion = value; }
+        public List<string> Estrellas { get => estrellas; set => estrellas = value; }
     }
 
 }

@@ -266,6 +266,100 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public List<Videojuegos> getVideojuegosFiltrado(int? plataforma, int? genero, int? plataformaDescarga, string? nombre)
+        {
+            List<Videojuegos> videojuegos = new List<Videojuegos>();
+            List<string> filters = new List<string>();
+            string query = "SELECT * FROM videogames WHERE 1=1"; // 1=1 es para facilitar la concatenación de filtros
+
+            if (plataforma.HasValue)
+            {
+                filters.Add("idplataforma = @plataforma");
+            }
+            if (genero.HasValue)
+            {
+                filters.Add("idgenerovid = @genero");
+            }
+            if (plataformaDescarga.HasValue)
+            {
+                filters.Add("idplataformadescarga = @plataformaDescarga");
+            }
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                filters.Add("Nombre LIKE @nombre");
+            }
+
+            if (filters.Count > 0)
+            {
+                query += " AND " + string.Join(" AND ", filters);
+            }
+
+            if (this.AbrirConexion())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    if (plataforma.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@plataforma", plataforma.Value);
+                    }
+                    if (genero.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@genero", genero.Value);
+                    }
+                    if (plataformaDescarga.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@plataformaDescarga", plataformaDescarga.Value);
+                    }
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    try
+                    {
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            Videojuegos videojuego = new Videojuegos
+                            {
+                                Id = Convert.ToInt32(dataReader["idgames"]),
+                                Nombre = Convert.ToString(dataReader["Nombre"]),
+                                Descripcion = Convert.ToString(dataReader["Descripcion"]),
+                                FechaEstreno = Convert.ToDateTime(dataReader["Fechadeestreno"]),
+                                Poster = Convert.ToString(dataReader["Poster"]),
+                                IdPlataforma = Convert.ToInt32(dataReader["idplataforma"]),
+                                IdGeneroVid = Convert.ToInt32(dataReader["idgenerovid"]),
+                                IdPlataformaDescarga = Convert.ToInt32(dataReader["idplataformadescarga"])
+                            };
+                            videojuegos.Add(videojuego);
+                        }
+                        dataReader.Close();
+                    }
+                    catch (MySqlException ex1)
+                    {
+                        MessageBox.Show(ex1.Message);
+                        return null;
+                    }
+                    catch (Exception ex2)
+                    {
+                        MessageBox.Show(ex2.StackTrace);
+                        MessageBox.Show(ex2.Message);
+                        return null;
+                    }
+                    finally
+                    {
+                        CerrarConexion();
+                    }
+                }
+                return videojuegos;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         public ResenaVideoGame UltimaResena(int idGame)
         {
             ResenaVideoGame resena = null; // Inicializar como null para verificar si se encontró una reseña

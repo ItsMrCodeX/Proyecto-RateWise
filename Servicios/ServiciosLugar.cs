@@ -268,6 +268,87 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public List<Lugar> getLugaresFiltrado(int? tipo, int? region, string? nombre)
+        {
+            List<Lugar> lugares = new List<Lugar>();
+            List<string> filters = new List<string>();
+            string query = "SELECT * FROM lugares WHERE 1=1"; // 1=1 es para facilitar la concatenación de filtros
+
+            if (tipo.HasValue)
+            {
+                filters.Add("idTipoLugar = @tipo");
+            }
+            if (region.HasValue)
+            {
+                filters.Add("idRegiones = @region");
+            }
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                filters.Add("Nombre LIKE @nombre");
+            }
+
+            if (filters.Count > 0)
+            {
+                query += " AND " + string.Join(" AND ", filters);
+            }
+            if (this.AbrirConexion())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    if (tipo.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@tipo", tipo.Value);
+                    }
+                    if (region.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@region", region.Value);
+                    }
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+                    try
+                    {
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            Lugar lugar = new Lugar();
+                            lugar.Id = Convert.ToInt32(dataReader["idlugares"]);
+                            lugar.Nombre = Convert.ToString(dataReader["Nombre"]);
+                            lugar.Descripcion = Convert.ToString(dataReader["Descripcion"]);
+                            lugar.Direccion = Convert.ToString(dataReader["Direccion"]);
+                            lugar.Contacto = Convert.ToInt64(dataReader["Contacto"]);
+                            lugar.Latitud = Convert.ToDouble(dataReader["Latitud"]);
+                            lugar.Longitud = Convert.ToInt64(dataReader["Longitud"]);
+                            lugar.Fotografia = Convert.ToString(dataReader["Fotografias"]);
+                            lugar.IdTipoLugar = Convert.ToInt32(dataReader["idTipoLugar"]);
+                            lugar.IdRegion = Convert.ToInt32(dataReader["idRegiones"]);
+                            lugares.Add(lugar);
+                        }
+                        dataReader.Close();
+                    }
+                    catch (MySqlException ex1)
+                    {
+                        MessageBox.Show(ex1.Message);
+                        return null;
+                    }
+                    catch (Exception ex2)
+                    {
+                        MessageBox.Show(ex2.StackTrace);
+                        MessageBox.Show(ex2.Message);
+                        return null;
+                    }
+                }
+                return lugares;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+
         public string getTipoLugar(int tipoLugarid)
         {
             string query = $"SELECT nombre FROM tipolugares where idtipolugar = {tipoLugarid}";

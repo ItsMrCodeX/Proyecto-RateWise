@@ -13,6 +13,9 @@ namespace Proyecto_Integrador.Modelos
         public int IdGeneroVid { get; set; }
         public int IdPlataformaDescarga { get; set; }
         public BitmapImage Imagen { get; set; }
+        public double? Calificacion { get ; set ; }
+        public List<string> Estrellas { get ; set ; }
+
         public Videojuegos()
         {
         }

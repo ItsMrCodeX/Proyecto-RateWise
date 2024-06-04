@@ -266,6 +266,100 @@ namespace Proyecto_Integrador.Servicios
             }
         }
 
+        public List<Entretenimiento> getEntretenimientoFiltrado(int? tipo, int? genero, int? plataforma, string? nombre)
+        {
+            List<Entretenimiento> entretenimientos = new List<Entretenimiento>();
+            List<string> filters = new List<string>();
+            string query = "SELECT * FROM entretenimiento WHERE 1=1"; // 1=1 es para facilitar la concatenación de filtros
+
+            if (tipo.HasValue)
+            {
+                filters.Add("idtipoentreten = @tipo");
+            }
+            if (genero.HasValue)
+            {
+                filters.Add("idgeneroentreten = @genero");
+            }
+            if (plataforma.HasValue)
+            {
+                filters.Add("idplataformaentreten = @plataforma");
+            }
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                filters.Add("Nombre LIKE @nombre");
+            }
+
+            if (filters.Count > 0)
+            {
+                query += " AND " + string.Join(" AND ", filters);
+            }
+
+            if (this.AbrirConexion())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    if (tipo.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@tipo", tipo.Value);
+                    }
+                    if (genero.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@genero", genero.Value);
+                    }
+                    if (plataforma.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@plataforma", plataforma.Value);
+                    }
+                    if (!string.IsNullOrEmpty(nombre))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                    }
+
+                    try
+                    {
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            Entretenimiento entretenimiento = new Entretenimiento
+                            {
+                                Id = Convert.ToInt32(dataReader["identreten"]),
+                                Nombre = Convert.ToString(dataReader["Nombre"]),
+                                Descripcion = Convert.ToString(dataReader["Descripcion"]),
+                                FechaEstreno = Convert.ToDateTime(dataReader["Fechadeestreno"]),
+                                Poster = Convert.ToString(dataReader["Poster"]),
+                                IdTipoEntreten = Convert.ToInt32(dataReader["idtipoentreten"]),
+                                IdGeneroEntreten = Convert.ToInt32(dataReader["idgeneroentreten"]),
+                                IdPlataformaEntreten = Convert.ToInt32(dataReader["idplataformaentreten"])
+                            };
+                            entretenimientos.Add(entretenimiento);
+                        }
+                        dataReader.Close();
+                    }
+                    catch (MySqlException ex1)
+                    {
+                        MessageBox.Show(ex1.Message);
+                        return null;
+                    }
+                    catch (Exception ex2)
+                    {
+                        MessageBox.Show(ex2.StackTrace);
+                        MessageBox.Show(ex2.Message);
+                        return null;
+                    }
+                    finally
+                    {
+                        CerrarConexion();
+                    }
+                }
+                return entretenimientos;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         public ResenaEntretenimiento UltimaResena(int idEntreten)
         {
             ResenaEntretenimiento resena = null; // Inicializar como null para verificar si se encontró una reseña

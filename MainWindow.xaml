@@ -80,11 +80,13 @@ CornerRadius="10">
                     <TextBlock Text="Videojuegos" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="btnVideo" />
                 </StackPanel>
             </Button>
+            
         </ui:SimpleStackPanel>
+        
         <ContentControl Grid.Column="1" x:Name="Cnt_main" HorizontalAlignment="Left" Margin="30,63,0,0" VerticalAlignment="Top" Height="875" Width="1370"/>
         <Button fa:Awesome.Content="User" Style="{StaticResource ButtonStylePrimary}" FontSize="35" Margin="12,10,288,0" VerticalAlignment="Top" Height="56" Click="Button_Click_3"/>
         <Label Content="Test" FontSize="24" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" x:Name="lblUsuarioActual" Height="53" Width="102"/>
-
+        <Button x:Name="Inicio" fa:Awesome.Content="Home" Style="{StaticResource ButtonStylePrimary}" FontSize="35" Margin="12,910,288,0" VerticalAlignment="Top" Height="56" Click="Inicio_Click" />
 
     </Grid>
 </Window>
